@@ -1,23 +1,11 @@
-Aihe: ilmoittautumisjärjestelmä Toteutetaan järjestelmä, jonka avulla ylläpidetään tietojenkäsittelylaitoksen kurssitietoja sekä tietoja kursseille ilmoittautuneista opiskelijoista... [lisää tekstiä 1-2 tekstikappaleen verran]
+Aihe: Sitsiplassaaja. Plassaaja plassaa käyttäjän syöttämät henkilöt avec- ja kaveri toiveiden mukaisesti yhteen pöytään. Pöydän voi jälkikäteen paloitella totuutta vastaavaksi. Esimerkiksi Alinassa syödään 3 pöydässä. Näin plassaajaa voidaan käyttää pöydistä riippumattomasti.
 
-Käyttäjät: Opiskelija ja Opetushallinto
+Plassaaja tulostaa lopuksi tiedoston, jossa sitsaajat istuvat paikallaan, ja kunkin istumapaikka on värjätty ruokatoiveiden/allergioiden mukaan. Myös viinikaadot ja jälkiruoka avecit näkyvät tiedostosta.
 
-Kaikkien käyttäjien toiminnot:
+Käyttäjät: Emännät ja mahdollisesti myöhemmin toteutettava yhteensopiva Sitsi-ilmo.
 
-    järjestelmään kirjautuminen
-        onnistuu jos salasana ja käyttäjätunnus oikein
-    kaikkien kurssien listaus
-    ...
+Emäntien toiminnot:
 
-Opiskelijan toiminnot:
+Sitsaajien syöttö ohjelmaan tietoineen.
 
-    ilmoittautuminen
-        onnistuu jos kurssi ei ole täynnä ja opiskelija ei ole jo kurssilla
-    omien ilmoittautumisten listaus
-    ...
-
-Opetushallinnon toiminnot:
-
-    uusien kurssien lisäys
-    tietyn kurssin ilmoittautujien listaaminen
-    ...
+Pöytäplassauksen tulostus
