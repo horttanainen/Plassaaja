@@ -18,9 +18,10 @@ import sitsaajatJaPoyta.Sitsaaja;
  *
  * @author Santeri
  */
-public class PoytaanPlassaajaTest {
+public class AveccienParittajaTest {
     
-    PoytaanPlassaaja plassaaja;
+    AveccienParittaja parittaja;
+    SitsaajienLisaaja ilmo;
     Sitsaaja henkilo1;
     Sitsaaja henkilo2;
     Sitsaaja henkilo3;
@@ -28,22 +29,29 @@ public class PoytaanPlassaajaTest {
 
     @Before
     public void setUp() {
-        plassaaja = new PoytaanPlassaaja();
-        henkilo1= new Sitsaaja("Matti Meikäläinen", "Vilma Sutela");
-        henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikäläinen");
+        henkilo1= new Sitsaaja("Matti Meikalainen", "Vilma Sutela");
+        henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikalainen");
         henkilo3= new Sitsaaja("Kippari Kalle", "Vilma Sutela");
+        ilmo= new SitsaajienLisaaja();
+        ilmo.lisaaSitsaaja(henkilo1);
+        ilmo.lisaaSitsaaja(henkilo2);
+        ilmo.lisaaSitsaaja(henkilo3);
+        parittaja = new AveccienParittaja(ilmo);
+        
+        
     }
     
     @Test
     public void OnnistunutAvecinAsetus(){
-        
+        parittaja.plassaaAvecit();
+        assertTrue(parittaja.ovatkoAvecit(henkilo1, henkilo2));
     }
     
     @Test
     public void AvecValintaOnnistuuVainMolempienSuostumuksella(){
-        
+        parittaja.plassaaAvecit();
+        assertFalse(parittaja.ovatkoAvecit(henkilo3, henkilo2));
     }
-    
     
     
     

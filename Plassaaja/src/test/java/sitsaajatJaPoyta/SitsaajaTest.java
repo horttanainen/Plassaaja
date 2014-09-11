@@ -21,14 +21,15 @@ import static org.junit.Assert.*;
 public class SitsaajaTest {
 
     Sitsaaja henkilo;
+
     
     @Before
     public void setUp() {
-        henkilo = new Sitsaaja("Matti Meikäläinen", "Maija Muukalainen");
+        henkilo = new Sitsaaja("Matti Meikalainen", "Maija Muukalainen");
 }
     @Test
     public void OikeanNimenAsetusOnnistuu(){
-        assertEquals("Matti Meikäläinen", henkilo.getNimi());
+        assertEquals("Matti Meikalainen", henkilo.getNimi());
     }
     
     @Test
@@ -36,14 +37,23 @@ public class SitsaajaTest {
         assertEquals("Maija Muukalainen", henkilo.getAvecToive());
     }
     
-    @Test
+
+    
+    @Test(expected = IllegalArgumentException.class)
     public void nimessaVainKirjaimia(){
-        assertTrue(henkilo.getNimi().matches("[a-zA-Z]+"));
+        henkilo= new Sitsaaja("124214 3443asdf", null);
     }
 
     @Test
     public void avecinNimessaVainKirjaimia(){
-        assertTrue(henkilo.getAvecToive().matches("[a-zA-Z]+"));
+        assertTrue(henkilo.getAvecToive().matches("[a-zA-Z a-zA-Z]+"));
     }
-
+    
+    @Test
+    public void sitsaajanAvecinAsetusOnnistuu(){
+        Sitsaaja henkilo2 =new Sitsaaja("Muija Meiju", null);
+        henkilo.setAvec(henkilo2);
+        assertEquals(henkilo2, henkilo.getAvec());
+    }
+    
 }
