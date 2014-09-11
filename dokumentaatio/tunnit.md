@@ -4,4 +4,8 @@ Githubin kanssa ropeltelua. SSH key ongelmia. Sain projektin kuitenkin aloitettu
 
 Ti 9.9 4 tuntia.
 
-Erin‰ist‰ harjoittelua testien kanssa ja piirsin alustavan luokkakaavion. Aloitin myˆs koodaamisen ja yrit‰n noudattaa TDD-metodia.
+Erin√§ist√§ harjoittelua testien kanssa ja piirsin alustavan luokkakaavion. Aloitin my√∂s koodaamisen ja yrit√§n noudattaa TDD-metodia.
+
+Ti 11.9 4 tuntia.
+
+Testit toteutettu ja muuta virhe koodista tuli poistettua. Suurin osa ajasta menee silti edelleen suunnitteluun. Pit-raportti ei ollut mieluisa.
