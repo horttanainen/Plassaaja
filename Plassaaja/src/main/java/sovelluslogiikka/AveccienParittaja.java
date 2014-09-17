@@ -6,24 +6,26 @@
 
 package sovelluslogiikka;
 
-import sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 import java.util.*;
 /**
  *
  * @author Santeri
  */
+//AveccienParittaja nimensä mukaisesti parittaa sitsaajille avecit
+//aveccitoiveita noudattaen, mikäli kummallakin on toisensa aveceiksi merkittyina.
 public class AveccienParittaja {
     private List<Sitsaaja> sitsaajat;
     
-    public AveccienParittaja(SitsaajienLisaaja lisaaja){
+    public AveccienParittaja(SitsaajatListana lisaaja){
         sitsaajat = lisaaja.getSitsaajat();
     }
     
     public void plassaaAvecit(){
         for(Sitsaaja a: sitsaajat){
             for(Sitsaaja b: sitsaajat){
-                if(a.getAvecToive().matches(b.getNimi())){
-                    if(b.getAvecToive().matches(a.getNimi())){
+                if(a.getAvecToive()!=null && a.getAvecToive().equalsIgnoreCase(b.getNimi())){
+                    if(b.getAvecToive() !=null && b.getAvecToive().equalsIgnoreCase(a.getNimi())){
                         a.setAvec(b);
                     }
                 }
@@ -32,6 +34,9 @@ public class AveccienParittaja {
     }
     
     public boolean ovatkoAvecit(Sitsaaja sitsaaja1, Sitsaaja sitsaaja2){
+        if(sitsaaja1.getAvecToive()==null || sitsaaja2.getAvecToive()==null){
+            return false;
+        }
         return sitsaaja1.getAvec()==sitsaaja2;
     }
     

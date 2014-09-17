@@ -7,24 +7,29 @@
 package sovelluslogiikka;
 
 import java.util.*;
-import sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 
 /**
  *
  * @author Santeri
  */
-public class SitsaajienLisaaja {
+//SitsaajatListana toimii ilmona ja samalla se säilyttää listan kaikista
+//ilmoittautuneista sitsaajista.
+
+public class SitsaajatListana {
     private List<Sitsaaja> sitsaajat;
     
-    public SitsaajienLisaaja(){
+    public SitsaajatListana(){
         sitsaajat= new ArrayList<Sitsaaja>();
     }
     
     //setterit
     
-    public void lisaaSitsaaja(Sitsaaja sitsaaja){
-        if(!sitsaajat.contains(sitsaaja)){
-            sitsaajat.add(sitsaaja);
+    public void lisaaSitsaaja(Sitsaaja... sitsaajat){
+        for(Sitsaaja a: sitsaajat){
+        if(!this.sitsaajat.contains(a)){
+            this.sitsaajat.add(a);
+        }
         }
         
     }

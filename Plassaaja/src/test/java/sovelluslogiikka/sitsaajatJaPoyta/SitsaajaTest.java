@@ -4,8 +4,9 @@
  * and open the template in the editor.
  */
 
-package sitsaajatJaPoyta;
+package sovelluslogiikka.sitsaajatJaPoyta;
 
+import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,16 +45,30 @@ public class SitsaajaTest {
         henkilo= new Sitsaaja("124214 3443asdf", null);
     }
 
-    @Test
+    @Test (expected = IllegalArgumentException.class)
     public void avecinNimessaVainKirjaimia(){
-        assertTrue(henkilo.getAvecToive().matches("[a-zA-Z a-zA-Z]+"));
+        henkilo=new Sitsaaja("joko mias", "234124 3453453");
     }
+    
+    @Test(expected = NullPointerException.class)
+    public void sitsaajallaPitaaOllaNimi(){
+        henkilo=new Sitsaaja(null, null);
+    }
+    
+
     
     @Test
     public void sitsaajanAvecinAsetusOnnistuu(){
         Sitsaaja henkilo2 =new Sitsaaja("Muija Meiju", null);
         henkilo.setAvec(henkilo2);
         assertEquals(henkilo2, henkilo.getAvec());
+    }
+    
+    @Test
+    public void kaverinAsetusOnnistuuOikeillaNimilla(){
+        henkilo.setKaveriToive("Mikko Mallikas","Ville Kolehmainen");
+        String[] kaverit= {"Mikko Mallikas","Ville Kolehmainen"};
+        assertArrayEquals(kaverit, henkilo.getKaveriToive());
     }
     
 }

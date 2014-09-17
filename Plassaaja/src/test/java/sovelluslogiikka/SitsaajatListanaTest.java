@@ -12,15 +12,15 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 
 /**
  *
  * @author Santeri
  */
-public class SitsaajienLisaajaTest {
+public class SitsaajatListanaTest {
 
-    SitsaajienLisaaja ilmo;
+    SitsaajatListana ilmo;
     Sitsaaja henkilo1;
     Sitsaaja henkilo2;
     Sitsaaja henkilo3;
@@ -30,7 +30,7 @@ public class SitsaajienLisaajaTest {
 
     @Before
     public void setUp() {
-        ilmo = new SitsaajienLisaaja();
+        ilmo = new SitsaajatListana();
         henkilo1= new Sitsaaja("Matti Meikalainen", "Vilma Sutela");
         henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikalainen");
         henkilo3= new Sitsaaja("Kippari Kalle", "Vilma Sutela");
@@ -52,5 +52,7 @@ public class SitsaajienLisaajaTest {
         ilmo.lisaaSitsaaja(henkilo2);
         assertEquals(1,ilmo.getSitsaajat().size());
     }
+    
+    
 
 }

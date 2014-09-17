@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 
 /**
  *
@@ -21,7 +21,7 @@ import sitsaajatJaPoyta.Sitsaaja;
 public class AveccienParittajaTest {
     
     AveccienParittaja parittaja;
-    SitsaajienLisaaja ilmo;
+    SitsaajatListana ilmo;
     Sitsaaja henkilo1;
     Sitsaaja henkilo2;
     Sitsaaja henkilo3;
@@ -32,7 +32,7 @@ public class AveccienParittajaTest {
         henkilo1= new Sitsaaja("Matti Meikalainen", "Vilma Sutela");
         henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikalainen");
         henkilo3= new Sitsaaja("Kippari Kalle", "Vilma Sutela");
-        ilmo= new SitsaajienLisaaja();
+        ilmo= new SitsaajatListana();
         ilmo.lisaaSitsaaja(henkilo1);
         ilmo.lisaaSitsaaja(henkilo2);
         ilmo.lisaaSitsaaja(henkilo3);
@@ -51,6 +51,24 @@ public class AveccienParittajaTest {
     public void AvecValintaOnnistuuVainMolempienSuostumuksella(){
         parittaja.plassaaAvecit();
         assertFalse(parittaja.ovatkoAvecit(henkilo3, henkilo2));
+    }
+    
+    @Test
+    public void avecinNimenAsetusOnnistuuVaikkaIsotKirjaimetSekaisin(){
+        Sitsaaja henkilo4= new Sitsaaja("MAIju meneva", "jaska jokela");
+        Sitsaaja henkilo5=new Sitsaaja("Jaska Jokela", "Maiju Meneva");
+        ilmo.lisaaSitsaaja(henkilo4);
+        ilmo.lisaaSitsaaja(henkilo5);
+        parittaja.plassaaAvecit();
+        assertTrue(parittaja.ovatkoAvecit(henkilo4, henkilo5));
+    }
+    
+    @Test
+    public void itseaanEiVoiValitaAvecikci(){
+        Sitsaaja henkilo6=new Sitsaaja("Antonio Boas", "Antonio Boas");
+        ilmo.lisaaSitsaaja(henkilo6);
+        parittaja.plassaaAvecit();
+        
     }
     
     

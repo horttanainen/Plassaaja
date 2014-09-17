@@ -1,8 +1,8 @@
 package main;
 
-import sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 import sovelluslogiikka.AveccienParittaja;
-import sovelluslogiikka.SitsaajienLisaaja;
+import sovelluslogiikka.SitsaajatListana;
 
 /**
  * Hello world!
