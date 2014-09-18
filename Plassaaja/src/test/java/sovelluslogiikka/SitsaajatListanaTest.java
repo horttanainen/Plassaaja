@@ -44,6 +44,19 @@ public class SitsaajatListanaTest {
         ilmo.lisaaSitsaaja(henkilo1);
         assertTrue(ilmo.getSitsaajat().contains(henkilo1));
     }
+    @Test
+    public void useanSitsaajanLisaysOnnistuu(){
+        henkilo3=new Sitsaaja("matti meikalainen", null);
+        ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
+        List<Sitsaaja> lista = new ArrayList<Sitsaaja>();
+                lista.add(henkilo1);
+                lista.add(henkilo2);
+                lista.add(henkilo4);
+                lista.add(henkilo5);
+                lista.add(henkilo6);
+                assertEquals(lista, ilmo.getSitsaajat());
+    }
+    
     
     @Test
     public void kahdenSamanNimisenHenkilonLisaaminenEiOnnistu(){
@@ -53,6 +66,18 @@ public class SitsaajatListanaTest {
         assertEquals(1,ilmo.getSitsaajat().size());
     }
     
-    
+    @Test
+    public void sitsaajanPoisaminenListaltaOnnistuu(){
+        ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
+        ilmo.poistaSitsaaja(henkilo1);
+        List<Sitsaaja> lista = new ArrayList<Sitsaaja>();
+                lista.add(henkilo2);
+                lista.add(henkilo3);
+                lista.add(henkilo4);
+                lista.add(henkilo5);
+                lista.add(henkilo6);
+                assertEquals(lista, ilmo.getSitsaajat());
+        
+    }
 
 }

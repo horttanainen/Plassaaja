@@ -14,13 +14,14 @@ import java.util.Objects;
  */
 //Sitsaajaan tallentuu kaikki sitsaajaa koskevat tiedot:nimi,avec,kaverit,
 //ruoka... jne.
-public class Sitsaaja {
+public class Sitsaaja implements Comparable<Sitsaaja> {
 
     private String avecToive;
     private String nimi;
     private Sitsaaja avec;
     private String[] kaveriToiveet;
     private List<Sitsaaja> kaverit;
+    private int suosio;
 
     public Sitsaaja(String nimi, String avecToive) {
         if (!nimi.matches("[a-zA-Z a-zA-Z]+") && nimi != null) {
@@ -39,7 +40,8 @@ public class Sitsaaja {
         }
         this.nimi = nimi;
         this.avecToive = avecToive;
-        this.kaverit=new ArrayList<>();
+        this.kaverit = new ArrayList<>();
+        this.suosio = 0;
     }
 
     //getterit
@@ -47,7 +49,7 @@ public class Sitsaaja {
         return nimi;
     }
 
-    public String getAvecToive() {  
+    public String getAvecToive() {
         return avecToive;
     }
 
@@ -58,14 +60,19 @@ public class Sitsaaja {
     public Sitsaaja getAvec() {
         return avec;
     }
-    
-    public Sitsaaja[] getKaverit(){
+
+    public Sitsaaja[] getKaverit() {
         Sitsaaja[] tmp = new Sitsaaja[this.kaverit.size()];
-        tmp=this.kaverit.toArray(tmp);
+        tmp = this.kaverit.toArray(tmp);
         return tmp;
     }
 
+    public int getSuosio() {
+        return this.suosio;
+    }
+
     //setterit
+
     public void setAvec(Sitsaaja avec) {
         this.avec = avec;
     }
@@ -74,9 +81,13 @@ public class Sitsaaja {
 
         this.kaveriToiveet = kaverit;
     }
-    
-    public void setKaveri(Sitsaaja sitsaaja){
+
+    public void setKaveri(Sitsaaja sitsaaja) {
         this.kaverit.add(sitsaaja);
+    }
+
+    public void setSuosio(int tykkays) {
+        this.suosio = tykkays;
     }
 
     @Override
@@ -85,10 +96,9 @@ public class Sitsaaja {
         hash = 83 * hash + Objects.hashCode(this.nimi);
         return hash;
     }
-    
-    //Päätin vertailla sitsaajia nimen perusteella. Plassaaja ei tällä hetkellä 
-    //hyväksy kahden saman nimisen henkilön lisäsytä, koska se sotkee liikaa.
 
+    //Päätin vertailla sitsaajia nimen perusteella. Plassaaja ei tällä hetkellä 
+    //hyväksy kahden saman nimisen henkilön lisäystä, koska se sotkee liikaa.
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -103,4 +113,17 @@ public class Sitsaaja {
         }
         return true;
     }
+
+
+    @Override
+    public int compareTo(Sitsaaja sitsaaja) {
+        if (this.suosio == sitsaaja.getSuosio()) {
+            return 0;
+        } else if (this.suosio > sitsaaja.getSuosio()) {
+            return -1;
+        } else {
+            return 1;
+        }
+    }
 }
+

@@ -6,6 +6,9 @@
 
 package sovelluslogiikka.sitsaajatJaPoyta;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -13,6 +16,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import sovelluslogiikka.SitsaajatListana;
 
 
 /**
@@ -22,6 +26,11 @@ import static org.junit.Assert.*;
 public class SitsaajaTest {
 
     Sitsaaja henkilo;
+    Sitsaaja henkilo2;
+    Sitsaaja henkilo3;
+    Sitsaaja henkilo4;
+    Sitsaaja henkilo5;
+    Sitsaaja henkilo6;
 
     
     @Before
@@ -69,6 +78,22 @@ public class SitsaajaTest {
         henkilo.setKaveriToive("Mikko Mallikas","Ville Kolehmainen");
         String[] kaverit= {"Mikko Mallikas","Ville Kolehmainen"};
         assertArrayEquals(kaverit, henkilo.getKaveriToive());
+    }
+    
+    @Test
+    public void compareToJarjestaaSitsaajatOikeinSuosionPerusteella(){
+        henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikalainen");
+        henkilo3= new Sitsaaja("Kippari Kalle", "Vilma Sutela");
+        henkilo4= new Sitsaaja("Tatti Meikalainen", "Kilma Sutela");
+        henkilo2.setSuosio(9);
+        henkilo3.setSuosio(4);
+        henkilo4.setSuosio(34);
+        List<Sitsaaja> SitsaajatVaarin = new ArrayList<>();
+        SitsaajatVaarin.add(henkilo2); SitsaajatVaarin.add(henkilo3); SitsaajatVaarin.add(henkilo4);
+        List<Sitsaaja> SitsaajatOikein = new ArrayList<>();
+        SitsaajatOikein.add(henkilo4); SitsaajatOikein.add(henkilo2); SitsaajatOikein.add(henkilo3);
+        Collections.sort(SitsaajatVaarin);
+        assertEquals(SitsaajatOikein, SitsaajatVaarin);
     }
     
 }

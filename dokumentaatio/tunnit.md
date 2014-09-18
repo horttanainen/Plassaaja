@@ -13,3 +13,7 @@ Testit toteutettu ja muuta virhe koodista tuli poistettua. Suurin osa ajasta men
 Ke 17.9 7 tuntia.
 
 TDD ohjelmointi on oikein miellyttävää. Plassaaja lisää nyt myös kaveritoiveet sitsaajille. Huomenna tarkoituksena olisi ratkaista kuinka plassaaja ryhmittelee sitsaajat. Edelleen suuri osa ajasta menee suunnitteluun. Kaaviosta olen huomannut olevan paljon hyötyä.
+
+To 18.9 5 tuntia
+
+Aloitin sitsaajien pisteytyksen kavereiden määrän perusteella, mikä helpottaa lopullista plassausta. Uutta luokkakaaviota piirrellessä keksin paremman tavan käyttää sitsiIlmoa. Muutenkin koodi tulee muuttumaan huomenna aika reilusti ilmeisesti.

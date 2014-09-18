@@ -31,7 +31,12 @@ public class SitsaajatListana {
             this.sitsaajat.add(a);
         }
         }
-        
+    }
+    
+    public void poistaSitsaaja(Sitsaaja sitsaaja){
+        if(sitsaajat.contains(new Sitsaaja(sitsaaja.getNimi(), null))){
+            sitsaajat.remove(sitsaaja);
+        }
     }
     
     //getterit
