@@ -15,9 +15,10 @@ import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 
 //SitsaajienJarjestajan on tarkoitus jarjestaa Sitsaajat järsejtykseen siten
 //että eniten kaveritoiveita saanut plassataan ensimmäiseksi ja seuraavaksi avec, jne..
-public class SitsaajienJarjestaja {
+public class SitsaajienJarjestaja extends SitsiIlmo {
     private List<Sitsaaja> sitsaajat;
-    public SitsaajienJarjestaja(SitsaajatListana ilmo){
+    
+    public SitsaajienJarjestaja(SitsiIlmo ilmo){
         this.sitsaajat=ilmo.getSitsaajat();
     }
     

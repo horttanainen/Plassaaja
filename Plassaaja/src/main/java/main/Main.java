@@ -2,7 +2,7 @@ package main;
 
 import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 import sovelluslogiikka.AveccienParittaja;
-import sovelluslogiikka.SitsaajatListana;
+import sovelluslogiikka.SitsiIlmo;
 
 /**
  * Hello world!

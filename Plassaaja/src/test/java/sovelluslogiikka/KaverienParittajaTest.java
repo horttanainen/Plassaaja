@@ -25,8 +25,9 @@ public class KaverienParittajaTest {
     Sitsaaja henkilo4;
     Sitsaaja henkilo5;
     Sitsaaja henkilo6;
-    SitsaajatListana ilmo;
-    KaverienParittaja parittaja;
+
+    SitsaajienManagerointi manageri;
+
 
     @Before
     public void setUp() {
@@ -36,16 +37,15 @@ public class KaverienParittajaTest {
         henkilo4 = new Sitsaaja("Satu H", null);
         henkilo5 = new Sitsaaja("Anna A", null);
         henkilo6 = new Sitsaaja("Joku Viela", null);
-        ilmo = new SitsaajatListana();
-        ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
-        parittaja = new KaverienParittaja(ilmo);
+        manageri=new SitsaajienManagerointi();
+        manageri.ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
     }
 
     @Test
     public void onnistunutKaverinAsetus() {
         henkilo1.setKaveriToive("Kake J", "Pietari S", "Satu H");
         Sitsaaja[] kaverit={henkilo2,henkilo3,henkilo4};
-        parittaja.paritaKaverit();
+        manageri.kaverienParittaja.paritaKaverit();
         assertArrayEquals(kaverit, henkilo1.getKaverit());
     }
 
@@ -53,7 +53,7 @@ public class KaverienParittajaTest {
     public void josKaveriaEiLoydyNiinKaveriaEiLisata() {
             henkilo1.setKaveriToive("Kake J", "Pietari S", "Satu H","Mielikuvituksen Tuote");
         Sitsaaja[] kaverit={henkilo2,henkilo3,henkilo4};
-        parittaja.paritaKaverit();
+        manageri.kaverienParittaja.paritaKaverit();
         assertArrayEquals(kaverit, henkilo1.getKaverit());
     }
 
@@ -61,7 +61,7 @@ public class KaverienParittajaTest {
     public void kaverinNimiEiOleCaseSensitive() {
         henkilo1.setKaveriToive("KAKE J", "pietari s", "SatU H");
         Sitsaaja[] kaverit={henkilo2,henkilo3,henkilo4};
-        parittaja.paritaKaverit();
+        manageri.kaverienParittaja.paritaKaverit();
         assertArrayEquals(kaverit, henkilo1.getKaverit());
 
     }

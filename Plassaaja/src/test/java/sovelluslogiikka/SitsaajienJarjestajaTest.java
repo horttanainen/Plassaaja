@@ -20,19 +20,18 @@ import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
  */
 public class SitsaajienJarjestajaTest {
 
-    SitsaajienJarjestaja jarjestaja;
-    SitsaajatListana ilmo;
+    SitsaajienManagerointi manageri;
     Sitsaaja henkilo1;
     Sitsaaja henkilo2;
     Sitsaaja henkilo3;
     Sitsaaja henkilo4;
     Sitsaaja henkilo5;
     Sitsaaja henkilo6;
-    KaverienParittaja kParittaja;
-    AveccienParittaja aParittaja;
+    
     
     @Before
     public void setUp() {
+        manageri=new SitsaajienManagerointi();
         henkilo1= new Sitsaaja("Matti Meikalainen", "Vilma Sutela");
         henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikalainen");
         henkilo3= new Sitsaaja("Kippari Kalle", "Vilma Sutela");
@@ -45,12 +44,10 @@ public class SitsaajienJarjestajaTest {
         henkilo4.setKaveriToive("Vilma Sutela","Matti MEikalainen","Kippari kalle");
         henkilo5.setKaveriToive("vilma sutela","kippari kalle","Tatti MEikalainen");
         henkilo6.setKaveriToive("Vilma Sutela", "Kippari Kalle", "Tatti Meikalainen");
-        ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
-        kParittaja=new KaverienParittaja(ilmo);
-        kParittaja.paritaKaverit();
-        aParittaja=new AveccienParittaja(ilmo);
-        aParittaja.plassaaAvecit();
-        jarjestaja=new SitsaajienJarjestaja(ilmo);
+        manageri.ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
+        manageri.kaverienParittaja.paritaKaverit();
+        manageri.aveccienParittaja.plassaaAvecit();
+
         
     }
     

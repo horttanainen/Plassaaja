@@ -16,10 +16,10 @@ import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 //SitsaajatListana toimii ilmona ja samalla se säilyttää listan kaikista
 //ilmoittautuneista sitsaajista.
 
-public class SitsaajatListana {
+public class SitsiIlmo {
     private List<Sitsaaja> sitsaajat;
     
-    public SitsaajatListana(){
+    public SitsiIlmo(){
         sitsaajat= new ArrayList<Sitsaaja>();
     }
     

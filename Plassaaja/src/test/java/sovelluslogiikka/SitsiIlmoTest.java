@@ -18,9 +18,9 @@ import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
  *
  * @author Santeri
  */
-public class SitsaajatListanaTest {
+public class SitsiIlmoTest {
 
-    SitsaajatListana ilmo;
+    SitsiIlmo ilmo;
     Sitsaaja henkilo1;
     Sitsaaja henkilo2;
     Sitsaaja henkilo3;
@@ -30,7 +30,7 @@ public class SitsaajatListanaTest {
 
     @Before
     public void setUp() {
-        ilmo = new SitsaajatListana();
+        ilmo = new SitsiIlmo();
         henkilo1= new Sitsaaja("Matti Meikalainen", "Vilma Sutela");
         henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikalainen");
         henkilo3= new Sitsaaja("Kippari Kalle", "Vilma Sutela");

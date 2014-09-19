@@ -14,11 +14,11 @@ import java.util.*;
  */
 //AveccienParittaja nimensä mukaisesti parittaa sitsaajille avecit
 //aveccitoiveita noudattaen, mikäli kummallakin on toisensa aveceiksi merkittyina.
-public class AveccienParittaja {
+public class AveccienParittaja extends SitsiIlmo {
     private List<Sitsaaja> sitsaajat;
     
-    public AveccienParittaja(SitsaajatListana lisaaja){
-        sitsaajat = lisaaja.getSitsaajat();
+    public AveccienParittaja(SitsiIlmo ilmo){
+        this.sitsaajat=ilmo.getSitsaajat();
     }
     
     public void plassaaAvecit(){

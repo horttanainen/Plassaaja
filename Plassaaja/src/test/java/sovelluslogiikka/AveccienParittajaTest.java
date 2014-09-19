@@ -20,8 +20,8 @@ import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
  */
 public class AveccienParittajaTest {
     
-    AveccienParittaja parittaja;
-    SitsaajatListana ilmo;
+    SitsaajienManagerointi manageri;
+
     Sitsaaja henkilo1;
     Sitsaaja henkilo2;
     Sitsaaja henkilo3;
@@ -32,43 +32,43 @@ public class AveccienParittajaTest {
         henkilo1= new Sitsaaja("Matti Meikalainen", "Vilma Sutela");
         henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikalainen");
         henkilo3= new Sitsaaja("Kippari Kalle", "Vilma Sutela");
-        ilmo= new SitsaajatListana();
-        ilmo.lisaaSitsaaja(henkilo1);
-        ilmo.lisaaSitsaaja(henkilo2);
-        ilmo.lisaaSitsaaja(henkilo3);
-        parittaja = new AveccienParittaja(ilmo);
+        manageri = new SitsaajienManagerointi();
+        manageri.ilmo.lisaaSitsaaja(henkilo1);
+        manageri.ilmo.lisaaSitsaaja(henkilo2);
+        manageri.ilmo.lisaaSitsaaja(henkilo3);
+       
         
         
     }
     
     @Test
     public void OnnistunutAvecinAsetus(){
-        parittaja.plassaaAvecit();
-        assertTrue(parittaja.ovatkoAvecit(henkilo1, henkilo2));
+        manageri.aveccienParittaja.plassaaAvecit();
+        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo1, henkilo2));
     }
     
     @Test
     public void AvecValintaOnnistuuVainMolempienSuostumuksella(){
-        parittaja.plassaaAvecit();
-        assertFalse(parittaja.ovatkoAvecit(henkilo3, henkilo2));
+        manageri.aveccienParittaja.plassaaAvecit();
+        assertFalse(manageri.aveccienParittaja.ovatkoAvecit(henkilo3, henkilo2));
     }
     
     @Test
     public void avecinNimenAsetusOnnistuuVaikkaIsotKirjaimetSekaisin(){
         Sitsaaja henkilo4= new Sitsaaja("MAIju meneva", "jaska jokela");
         Sitsaaja henkilo5=new Sitsaaja("Jaska Jokela", "Maiju Meneva");
-        ilmo.lisaaSitsaaja(henkilo4);
-        ilmo.lisaaSitsaaja(henkilo5);
-        parittaja.plassaaAvecit();
-        assertTrue(parittaja.ovatkoAvecit(henkilo4, henkilo5));
+        manageri.ilmo.lisaaSitsaaja(henkilo4);
+        manageri.ilmo.lisaaSitsaaja(henkilo5);
+        manageri.aveccienParittaja.plassaaAvecit();
+        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo4, henkilo5));
     }
     
     @Test
     public void itseaanEiVoiValitaAvecikci(){
         Sitsaaja henkilo6=new Sitsaaja("Antonio Boas", "Antonio Boas");
-        ilmo.lisaaSitsaaja(henkilo6);
-        parittaja.plassaaAvecit();
-        
+        manageri.ilmo.lisaaSitsaaja(henkilo6);
+        manageri.aveccienParittaja.plassaaAvecit();
+        assertFalse(manageri.aveccienParittaja.ovatkoAvecit(henkilo6, henkilo6));
     }
     
     

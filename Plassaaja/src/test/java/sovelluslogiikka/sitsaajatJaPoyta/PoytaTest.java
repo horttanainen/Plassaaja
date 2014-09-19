@@ -14,7 +14,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.w3c.dom.ls.LSInput;
-import sovelluslogiikka.SitsaajatListana;
+import sovelluslogiikka.SitsiIlmo;
 import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 
 /**
@@ -28,7 +28,7 @@ public class PoytaTest {
     Sitsaaja henkilo4;
     Sitsaaja henkilo5;
     Sitsaaja henkilo6;
-    SitsaajatListana ilmo;
+    SitsiIlmo ilmo;
     Poyta poyta;
     
     @Before
@@ -39,7 +39,7 @@ public class PoytaTest {
         henkilo4= new Sitsaaja("Tatti Meikalainen", "Kilma Sutela");
         henkilo5= new Sitsaaja("Kilma Sutela", "Tatti Meikalainen");
         henkilo6= new Sitsaaja("Kuppa Kalle", "Vilma Sutela");
-        ilmo=new SitsaajatListana();
+        ilmo=new SitsiIlmo();
         ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
     }
     
@@ -50,11 +50,6 @@ public class PoytaTest {
         
     }
     
-    @Test
-    public void poydanKokoOnSitsaajienMaara(){
-        poyta= new Poyta(ilmo);
-        assertEquals(6, poyta.getKoko());
-    }
     
     
 

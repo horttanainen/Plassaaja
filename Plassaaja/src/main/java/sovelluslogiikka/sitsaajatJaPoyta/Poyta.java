@@ -6,7 +6,7 @@
 package sovelluslogiikka.sitsaajatJaPoyta;
 
 import java.util.*;
-import sovelluslogiikka.SitsaajatListana;
+import sovelluslogiikka.SitsiIlmo;
 
 /**
  *
@@ -22,7 +22,7 @@ import sovelluslogiikka.SitsaajatListana;
 //Missa Sitsaaja[i]=henkilo(Nimi,Avec,...)
 public class Poyta {
     private Sitsaaja[] poyta;
-    public Poyta(SitsaajatListana listaSitsaajista){
+    public Poyta(SitsiIlmo listaSitsaajista){
         poyta = new Sitsaaja[listaSitsaajista.getSitsaajat().size()];
         this.poyta=listaSitsaajista.getSitsaajat().toArray(poyta);
         

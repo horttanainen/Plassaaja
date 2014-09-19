@@ -17,3 +17,7 @@ TDD ohjelmointi on oikein miellyttävää. Plassaaja lisää nyt myös kaveritoi
 To 18.9 5 tuntia
 
 Aloitin sitsaajien pisteytyksen kavereiden määrän perusteella, mikä helpottaa lopullista plassausta. Uutta luokkakaaviota piirrellessä keksin paremman tavan käyttää sitsiIlmoa. Muutenkin koodi tulee muuttumaan huomenna aika reilusti ilmeisesti.
+
+Pe 19.9 2 tuntia
+
+Muokkasin ohjelman rakennetta hiukan.
