@@ -64,7 +64,17 @@ public class SitsaajaTest {
         henkilo=new Sitsaaja(null, null);
     }
     
-
+    @Test
+    public void sukupuolenAsetusOnnistuu(){
+        henkilo.setSukupuoli(Sukupuoli.Mies);
+        assertEquals(Sukupuoli.Mies, henkilo.getSukupuoli());
+    }
+    
+    @Test
+    public void sukupulenAsetusNaiseksiOnnistuu(){
+        henkilo.setSukupuoli(Sukupuoli.Nainen);
+        assertEquals(Sukupuoli.Nainen, henkilo.getSukupuoli());
+    }
     
     @Test
     public void sitsaajanAvecinAsetusOnnistuu(){

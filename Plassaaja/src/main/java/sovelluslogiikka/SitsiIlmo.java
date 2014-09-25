@@ -10,11 +10,11 @@ import java.util.*;
 import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 
 /**
- *
+ *SitsiIlmo toimii sitsien ilmona ja sen kautta sitsaajat lisätään ja poistetaan
+ * sitseiltä. Samalla se myös säilyttää listan kaikista ilmoittautuneista
+ * sitsaajista.
  * @author Santeri
  */
-//SitsaajatListana toimii ilmona ja samalla se säilyttää listan kaikista
-//ilmoittautuneista sitsaajista.
 
 public class SitsiIlmo {
     private List<Sitsaaja> sitsaajat;

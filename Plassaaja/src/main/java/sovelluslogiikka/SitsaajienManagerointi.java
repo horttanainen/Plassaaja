@@ -6,20 +6,24 @@
 package sovelluslogiikka;
 
 /**
- *
+ *SitsaajienManagerointi luo kerralla kaikki sitsaajien käsittelyyn
+ *tarvittavat työkalut ja niitä on helppo käyttää managerin kautta.
  * @author Santeri
  */
 public class SitsaajienManagerointi {
     public SitsiIlmo ilmo;
     public AveccienParittaja aveccienParittaja;
     public KaverienParittaja kaverienParittaja;
-    public SitsaajienJarjestaja sitsaajienJarjestaja;
+    public SitsaajienPisteyttaja sitsaajienPisteyttaja;
+    public SitsaajienRyhmittaja sitsaajienRyhmittaja;
+    
     
     public SitsaajienManagerointi(){
         this.ilmo=new SitsiIlmo();
-        this.aveccienParittaja=new AveccienParittaja(ilmo);
-        this.kaverienParittaja=new KaverienParittaja(ilmo);
-        this.sitsaajienJarjestaja=new SitsaajienJarjestaja(ilmo);
+        this.aveccienParittaja=new AveccienParittaja();
+        this.kaverienParittaja=new KaverienParittaja();
+        this.sitsaajienPisteyttaja=new SitsaajienPisteyttaja();
+        this.sitsaajienRyhmittaja=new SitsaajienRyhmittaja(sitsaajienPisteyttaja);
     }
-    
+
 }

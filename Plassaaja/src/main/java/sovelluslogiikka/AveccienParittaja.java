@@ -9,30 +9,52 @@ package sovelluslogiikka;
 import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 import java.util.*;
 /**
- *
+ *AveccienParittaja nimensä mukaisesti parittaa sitsaajille avecit
+ *aveccitoiveita noudattaen, mikäli kummallakin on toisensa aveceiksi merkittyina.
  * @author Santeri
  */
-//AveccienParittaja nimensä mukaisesti parittaa sitsaajille avecit
-//aveccitoiveita noudattaen, mikäli kummallakin on toisensa aveceiksi merkittyina.
-public class AveccienParittaja extends SitsiIlmo {
+
+public class AveccienParittaja {
+    private SitsiIlmo ilmo;
     private List<Sitsaaja> sitsaajat;
+
     
-    public AveccienParittaja(SitsiIlmo ilmo){
+    private void setSitsaajaLista(){
         this.sitsaajat=ilmo.getSitsaajat();
     }
-    
+    /**
+     * Plassaa avecit kaikille aveccia toivoneille, jos toiveet täsmäävät
+     * mielitietyn kanssa.
+     */
     public void plassaaAvecit(){
+        setSitsaajaLista();
         for(Sitsaaja a: sitsaajat){
-            for(Sitsaaja b: sitsaajat){
-                if(a.getAvecToive()!=null && a.getAvecToive().equalsIgnoreCase(b.getNimi())){
-                    if(b.getAvecToive() !=null && b.getAvecToive().equalsIgnoreCase(a.getNimi())){
+            plassaaAlleAvec(a);
+        }
+    }
+    
+    protected void plassaaAlleAvec(Sitsaaja a){
+        for(Sitsaaja b: sitsaajat){
+                if(loytyykoAnAvecToiveistaB(a, b)){
+                    if(loytyykoAnAvecToiveistaB(b, a)){
                         a.setAvec(b);
                     }
                 }
             }
-        }
     }
     
+    protected boolean loytyykoAnAvecToiveistaB(Sitsaaja a,Sitsaaja b){
+        if(a.getAvecToive()!=null && a.getAvecToive().equalsIgnoreCase(b.getNimi())){
+            return true;
+        }
+        return false;
+    }
+    /**
+     * Tarkistaa ovatko kaksi sitsaajaa avecit keskenään.
+     * @param sitsaaja1 Sitsaaja
+     * @param sitsaaja2 Sitsaaja
+     * @return true jos ovat avecit, muutoin false.
+     */
     public boolean ovatkoAvecit(Sitsaaja sitsaaja1, Sitsaaja sitsaaja2){
         if(sitsaaja1.getAvecToive()==null || sitsaaja2.getAvecToive()==null){
             return false;

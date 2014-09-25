@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajatJaPoyta.Sukupuoli;
 
 /**
  *
@@ -69,6 +70,23 @@ public class AveccienParittajaTest {
         manageri.ilmo.lisaaSitsaaja(henkilo6);
         manageri.aveccienParittaja.plassaaAvecit();
         assertFalse(manageri.aveccienParittaja.ovatkoAvecit(henkilo6, henkilo6));
+    }
+    
+    @Test
+    public void loytyykoAnAvecToiveistaBToimiiOikein(){
+        assertTrue(manageri.aveccienParittaja.loytyykoAnAvecToiveistaB(henkilo1, henkilo2));
+    }
+    
+    @Test
+    public void loytyykoAnAvecToiveistaBToimiiOikeinKunEiLoydy(){
+        assertFalse(manageri.aveccienParittaja.loytyykoAnAvecToiveistaB(henkilo2, henkilo3));  
+    }
+    
+    @Test
+    public void samaaSukupuoltaOlevatEivatVoiOllaAvecit(){
+        henkilo1.setSukupuoli(Sukupuoli.Mies);
+        henkilo2.setSukupuoli(Sukupuoli.Mies);
+        assertFalse(manageri.aveccienParittaja.ovatkoAvecit(henkilo1, henkilo2));
     }
     
     

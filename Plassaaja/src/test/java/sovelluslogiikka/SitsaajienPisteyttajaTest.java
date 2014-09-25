@@ -18,7 +18,7 @@ import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
  *
  * @author Santeri
  */
-public class SitsaajienJarjestajaTest {
+public class SitsaajienPisteyttajaTest {
 
     SitsaajienManagerointi manageri;
     Sitsaaja henkilo1;
@@ -46,22 +46,38 @@ public class SitsaajienJarjestajaTest {
         henkilo6.setKaveriToive("Vilma Sutela", "Kippari Kalle", "Tatti Meikalainen");
         manageri.ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
         manageri.kaverienParittaja.paritaKaverit();
-        manageri.aveccienParittaja.plassaaAvecit();
-
-        
+        manageri.aveccienParittaja.plassaaAvecit();       
     }
     
-//    @Test
-//    public void JarjestajaPisteyttaaSitsaajatOikein(){
-//        jarjestaja.pisteytaSitsaajat();
-//        List<Sitsaaja> lista = new ArrayList<>();
-//        lista.add(henkilo2);
-//        lista.add(henkilo4);
-//        lista.add(henkilo3);
-//        lista.add(henkilo1);
-//        lista.add(henkilo5);
-//        lista.add(henkilo6);
-//        assertEquals(lista, jarjestaja.getPisteytettyLista());
-//    }
+    @Test
+    public void JarjestajaPisteyttaaSitsaajatOikein(){
+        manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
+        List<Sitsaaja> lista = new ArrayList<>();
+        lista.add(henkilo2);
+        lista.add(henkilo4);
+        lista.add(henkilo3);
+        lista.add(henkilo1);
+        lista.add(henkilo5);
+        lista.add(henkilo6);
+        assertEquals(lista, manageri.sitsaajienPisteyttaja.getPisteytettyLista());
+    }
+    
+    @Test
+    public void loytyykoKaveritoiveistaPalauttaaTrueJosOnToiveissa(){
+        manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
+        assertTrue(manageri.sitsaajienPisteyttaja.LoytyykoAKaveritoiveista(henkilo2, henkilo1));
+    }
+    
+    @Test
+    public void loytyykoKaveritoiveistaPalauttaaFalseJosEiToiveissa(){
+        manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
+        assertFalse(manageri.sitsaajienPisteyttaja.LoytyykoAKaveritoiveista(henkilo1, henkilo3));
+    }
+    
+    @Test
+    public void pisteyttaakoPisteytaSitsaajaOikein(){
+        manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
+        assertEquals(6, henkilo2.getSuosio());
+    }
     
 }

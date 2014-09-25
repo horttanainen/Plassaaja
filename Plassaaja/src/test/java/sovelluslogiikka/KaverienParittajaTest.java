@@ -65,5 +65,6 @@ public class KaverienParittajaTest {
         assertArrayEquals(kaverit, henkilo1.getKaverit());
 
     }
+    
 
 }

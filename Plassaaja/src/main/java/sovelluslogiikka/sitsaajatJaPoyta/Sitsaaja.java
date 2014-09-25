@@ -9,20 +9,25 @@ import java.util.*;
 import java.util.Objects;
 
 /**
- *
+ *Sitsaajaan tallentuu kaikki sitsaajaa koskevat tiedot:nimi,avec,kaverit,
+ *ruoka... jne.
  * @author Santeri
  */
-//Sitsaajaan tallentuu kaikki sitsaajaa koskevat tiedot:nimi,avec,kaverit,
-//ruoka... jne.
+
 public class Sitsaaja implements Comparable<Sitsaaja> {
 
     private String avecToive;
     private String nimi;
     private Sitsaaja avec;
     private String[] kaveriToiveet;
-    private List<Sitsaaja> kaverit;
+    public List<Sitsaaja> kaverit;
     private int suosio;
-
+    private Sukupuoli sukupuoli;
+/**
+ * Luo sitsaajan. 
+ * @param nimi Sitsaajan nimi
+ * @param avecToive Sitsaajan avec toive (ei välttämättä toteudu, jos ei molempien hyväksyntää)
+ */
     public Sitsaaja(String nimi, String avecToive) {
         if (!nimi.matches("[a-zA-Z a-zA-Z]+") && nimi != null) {
             throw new IllegalArgumentException("Nimen pitaa olla muotoa: Matti "
@@ -70,6 +75,10 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
     public int getSuosio() {
         return this.suosio;
     }
+    
+    public Sukupuoli getSukupuoli(){
+        return this.sukupuoli;
+    }
 
     //setterit
 
@@ -78,8 +87,20 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
     }
 
     public void setKaveriToive(String... kaverit) {
-
+        if(this.kaveriToiveet==null){
         this.kaveriToiveet = kaverit;
+        }
+        else{
+            int j=this.kaveriToiveet.length;
+            for (String a : kaverit) {
+                this.kaveriToiveet[j]=a;
+                j++;
+            }
+        }
+    }
+    
+    public void setSukupuoli(Sukupuoli sukupuoli){
+        this.sukupuoli=sukupuoli;
     }
 
     public void setKaveri(Sitsaaja sitsaaja) {
@@ -97,8 +118,11 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
         return hash;
     }
 
-    //Päätin vertailla sitsaajia nimen perusteella. Plassaaja ei tällä hetkellä 
-    //hyväksy kahden saman nimisen henkilön lisäystä, koska se sotkee liikaa.
+   /**
+    * Sitsaajia verrataan nimen perusteella.
+    * @param obj Sitsaajan ilmentymä johon verrataan tätä sitsaajaa.
+    * @return 
+    */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -114,7 +138,11 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
         return true;
     }
 
-
+/**
+ * Plassaamista varten Sitsaajat on järsjetettävä suosion perusteella.
+ * @param sitsaaja Sitsaajan ilmentymä johon tätä sitsaajaa verrataan.
+ * @return 
+ */
     @Override
     public int compareTo(Sitsaaja sitsaaja) {
         if (this.suosio == sitsaaja.getSuosio()) {
