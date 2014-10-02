@@ -18,13 +18,19 @@ import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
 
 public class SitsiIlmo {
     private List<Sitsaaja> sitsaajat;
-    
+    /**
+     * Luo sitsi-ilmon ja sen yhteydessä alustaa listan ilmoitettaville sitsaajille.
+     */
     public SitsiIlmo(){
         sitsaajat= new ArrayList<Sitsaaja>();
     }
     
-    //setterit
-    
+    /**
+     * Lisää käyttäjän syöttämät sitsaajat sitseille. Kahta samannimistä
+     * sitsaajaa ei tosin voi ilmoittaa sitseille.
+     * @param sitsaajat Käyttäjän syöttämät sitsaajat muodossa:
+     * sitsaaja1, sitsaaja2, jne..
+     */
     public void lisaaSitsaaja(Sitsaaja... sitsaajat){
         for(Sitsaaja a: sitsaajat){
         if(!this.sitsaajat.contains(a)){
@@ -32,14 +38,20 @@ public class SitsiIlmo {
         }
         }
     }
-    
+    /**
+     * Poistaa sitsaajan sitseiltä, jos sitsaaja löytyy sitsaajien joukosta.
+     * @param sitsaaja 
+     */
     public void poistaSitsaaja(Sitsaaja sitsaaja){
         if(sitsaajat.contains(new Sitsaaja(sitsaaja.getNimi(), null))){
             sitsaajat.remove(sitsaaja);
         }
     }
     
-    //getterit
+    /**
+     * Palauttaa listan kaikista sitsaajista, jotka on ilmoitettu sitseille.
+     * @return lista sitsaajsita.
+     */
     public List<Sitsaaja> getSitsaajat(){
         return this.sitsaajat;
     }

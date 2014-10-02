@@ -21,3 +21,19 @@ Aloitin sitsaajien pisteytyksen kavereiden määrän perusteella, mikä helpotta
 Pe 19.9 2 tuntia
 
 Muokkasin ohjelman rakennetta hiukan.
+
+To 25.9 6 tuntia
+
+Lisäsin sitsaajien ryhmittäjään hiukan toiminnallisuutta.
+
+Ti 30.9 4 tuntia
+
+Ryhmittäjän toiminnallisuus valmis, mutta buginen.
+
+Ke 1.10 6 tuntia
+
+Ryhmittäjän bugiesta päästy eroon ja testit menevät läpi.
+
+To 2.10 6 tuntia
+
+Yritin keksiä hyvää tapaa plassata kaveriporukat pöytiin. JavaDoc melkein valmis.

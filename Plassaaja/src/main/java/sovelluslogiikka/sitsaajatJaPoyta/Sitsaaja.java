@@ -48,6 +48,16 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
         this.kaverit = new ArrayList<>();
         this.suosio = 0;
     }
+    
+    public void vaihdaSukupuolta(){
+        if(this.sukupuoli!=null){
+            if(this.sukupuoli==Sukupuoli.Mies){
+                this.sukupuoli=Sukupuoli.Nainen;
+            } else{
+                this.sukupuoli=Sukupuoli.Mies;
+            }
+        }
+    }
 
     //getterit
     public String getNimi() {
@@ -103,8 +113,11 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
         this.sukupuoli=sukupuoli;
     }
 
-    public void setKaveri(Sitsaaja sitsaaja) {
-        this.kaverit.add(sitsaaja);
+    public void setKaveri(Sitsaaja... sitsaaja) {
+        for (Sitsaaja a : sitsaaja) {
+           this.kaverit.add(a); 
+        }
+        Collections.sort(kaverit);
     }
 
     public void setSuosio(int tykkays) {
@@ -152,6 +165,11 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
         } else {
             return 1;
         }
+    }
+    
+    @Override
+    public String toString(){
+        return this.nimi;
     }
 }
 

@@ -18,8 +18,18 @@ import java.util.*;
 public class KaverienParittaja{
     private List<Sitsaaja> sitsaajat;
     private SitsiIlmo ilmo;
+    /**
+     * Luo kaverienparittajan ja alustaa tälle Sitsiilmon, josta parittaja löytää
+     * paritettavat sitsaajat.
+     * @param ilmo 
+     */
+    public KaverienParittaja(SitsiIlmo ilmo){
+        this.ilmo=ilmo;
+    }
     
-    
+    /**
+     * Asettaa kaverienparittajalle listan sitsaajista paritaKaverit() yhteydessä
+     */
     private void setSitsaajaLista(){
         this.sitsaajat=ilmo.getSitsaajat();
     }
@@ -33,7 +43,10 @@ public class KaverienParittaja{
             paritaSitsaajalleKaveri(a);
         }
     }
-    
+    /**
+     * Parittaa yksittäiselle sitsaajalle A kaverin.
+     * @param a Sitsaaja A
+     */
 protected void paritaSitsaajalleKaveri(Sitsaaja a){
     if (a.getKaveriToive() != null) {
                 for (String kaveritoive : a.getKaveriToive()) {

@@ -44,11 +44,10 @@
     <version>0.30</version>
     <configuration>
         <targetClasses>
-            <param>sitsaajatJaPoyta.*</param>
             <param>sovelluslogiikka.*</param>
         </targetClasses>
         <targetTests>
-            <param>sitsaajatJaPoyta*</param>
+
             <param>sovelluslogiikka*</param>
         </targetTests>
     </configuration>

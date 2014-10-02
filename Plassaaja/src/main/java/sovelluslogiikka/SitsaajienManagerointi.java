@@ -11,19 +11,41 @@ package sovelluslogiikka;
  * @author Santeri
  */
 public class SitsaajienManagerointi {
+    /**
+     * Sitsi ilmo. Ilmolla voi lisätä ja poistaa sitsaajia.
+     */
     public SitsiIlmo ilmo;
+    /**
+     * Aveccien parittaja. Parittaa avecit.
+     */
     public AveccienParittaja aveccienParittaja;
+    /**
+     * Kaverien parittaja. Asettaa sitsaajalle hänen kaveritoiveita vastaavat
+     * kaverit, jos löytyvät sitseiltä.
+     */
     public KaverienParittaja kaverienParittaja;
+    /**
+     * Pisteyttää sitsaajat suosion perusteella.
+     */
     public SitsaajienPisteyttaja sitsaajienPisteyttaja;
+    /**
+     * Ryhmittää sitsaajat kaveriporukoihin Pisteyttäjän tulosten ja toiveiden
+     * perusteella.
+     */
     public SitsaajienRyhmittaja sitsaajienRyhmittaja;
+    /**
+     * Plassaa sitsaajat pöytään käyttäen hyväkseen pisteyttäjän atribuutteja.
+     */
+    public Plassaaja plassaaja;
     
     
     public SitsaajienManagerointi(){
         this.ilmo=new SitsiIlmo();
-        this.aveccienParittaja=new AveccienParittaja();
-        this.kaverienParittaja=new KaverienParittaja();
-        this.sitsaajienPisteyttaja=new SitsaajienPisteyttaja();
+        this.aveccienParittaja=new AveccienParittaja(ilmo);
+        this.kaverienParittaja=new KaverienParittaja(ilmo);
+        this.sitsaajienPisteyttaja=new SitsaajienPisteyttaja(ilmo);
         this.sitsaajienRyhmittaja=new SitsaajienRyhmittaja(sitsaajienPisteyttaja);
+//        this.plassaaja=new Plassaaja(sitsaajienRyhmittaja);
     }
 
 }

@@ -106,4 +106,16 @@ public class SitsaajaTest {
         assertEquals(SitsaajatOikein, SitsaajatVaarin);
     }
     
+    @Test
+    public void toStringToimii(){
+        assertEquals("Matti Meikalainen", henkilo.toString());
+    }
+    
+    @Test
+    public void sukupuolenVaihdosToimiiJosMiesJaNaisTasapainoOnPielessa(){
+        henkilo.setSukupuoli(Sukupuoli.Mies);
+        henkilo.vaihdaSukupuolta();
+        assertEquals(Sukupuoli.Nainen, henkilo.getSukupuoli());
+    }
+    
 }

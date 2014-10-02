@@ -17,8 +17,15 @@ import java.util.*;
 public class AveccienParittaja {
     private SitsiIlmo ilmo;
     private List<Sitsaaja> sitsaajat;
-
     
+    public AveccienParittaja(SitsiIlmo ilmo){
+        this.ilmo=ilmo;
+    }
+
+    /**
+     * Asettaa parittajalle sitsaajalistan. Tämä ei tapahdu aveccienparittajaa
+     * luodessa, koska manageri luo myös sitsiilmon parittajan yhteydessä.
+     */
     private void setSitsaajaLista(){
         this.sitsaajat=ilmo.getSitsaajat();
     }
@@ -32,7 +39,10 @@ public class AveccienParittaja {
             plassaaAlleAvec(a);
         }
     }
-    
+    /**
+     * Plassaa yksittäiselle Sitsaajalle A avecin, jos avec on myös toivonut A:ta
+     * @param a Sitsaaja A
+     */
     protected void plassaaAlleAvec(Sitsaaja a){
         for(Sitsaaja b: sitsaajat){
                 if(loytyykoAnAvecToiveistaB(a, b)){
@@ -42,7 +52,12 @@ public class AveccienParittaja {
                 }
             }
     }
-    
+    /**
+     * Nimensä mukasiesti tarkastaa löytyykö sitsaajan A toiveista Sitsaaja B
+     * @param a Sitsaaja A
+     * @param b Sitsaaja B
+     * @return Palauttaa true jos löytyy
+     */
     protected boolean loytyykoAnAvecToiveistaB(Sitsaaja a,Sitsaaja b){
         if(a.getAvecToive()!=null && a.getAvecToive().equalsIgnoreCase(b.getNimi())){
             return true;
@@ -56,9 +71,7 @@ public class AveccienParittaja {
      * @return true jos ovat avecit, muutoin false.
      */
     public boolean ovatkoAvecit(Sitsaaja sitsaaja1, Sitsaaja sitsaaja2){
-        if(sitsaaja1.getAvecToive()==null || sitsaaja2.getAvecToive()==null){
-            return false;
-        }
+        if(sitsaaja1.getAvec()==null||sitsaaja2.getAvec()==null) return false;
         return sitsaaja1.getAvec()==sitsaaja2;
     }
     

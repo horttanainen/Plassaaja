@@ -43,14 +43,10 @@ public class PoytaTest {
         ilmo.lisaaSitsaaja(henkilo1,henkilo2,henkilo3,henkilo4,henkilo5,henkilo6);
     }
     
-    @Test
-    public void poydanLuontiOikealleMaaralleIhmisiaOnnistuu(){
-        poyta= new Poyta(ilmo);
-        assertEquals(6, poyta.getKoko());
-        
-    }
     
+//    @Test
+//    public void getPoytaPalauttaaList(){
+//        assertEquals(new List<Sitsaaja>, poyta.getPoyta());
+//    }
     
-    
-
 }
