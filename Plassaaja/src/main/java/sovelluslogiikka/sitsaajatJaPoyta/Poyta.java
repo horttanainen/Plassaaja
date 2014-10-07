@@ -13,8 +13,8 @@ import sovelluslogiikka.SitsiIlmo;
  *metodeilla vastaamaan todelista poytaa. 
  *Poyta on List jossa ensimmainen paikka [0] on poydan vasemmassa
  *ylakulmassa sijaitseva paikka. Seuraava paikka [1] on paikkaa [0] vastapaata.
- *0   2   4   6   8   10  ...     i-2    i       i+2
- *1   3   5   7   9   11  ...     i-1    i+1     i+3
+ *0   2   4   6   8   10  ...     i-2    i       i+2    i+4     i+6
+ *1   3   5   7   9   11  ...     i-1    i+1     i+3    i+5     i+7
  *
  * Naiset istuvat paikoilla 0,3,4,7,8,11,12,15
  * Miehet paikoilla 1,2,5,6,9,10,13,14,17
@@ -28,5 +28,9 @@ public class Poyta {
 
     public Poyta(){
         this.poyta= new ArrayList<>();
-}    
+}
+    
+    public List<Sitsaaja> getPoyta(){
+        return this.poyta;
+    }
 }

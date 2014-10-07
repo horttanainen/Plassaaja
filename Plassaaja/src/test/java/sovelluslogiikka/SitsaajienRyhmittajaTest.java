@@ -312,7 +312,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
         assertEquals(henkilo5, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo2,henkilo1));
-        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo4,henkilo5));
+        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo6,henkilo5));
     }
     
     @Test
@@ -388,7 +388,6 @@ public class SitsaajienRyhmittajaTest {
         henkilo5.setSukupuoli(Sukupuoli.Nainen);
         henkilo6.setSukupuoli(Sukupuoli.Mies);
         henkilo1.setSuosio(10);
-        henkilo2.setSuosio(9);
         henkilo3.setSuosio(7);
         henkilo4.setSuosio(6);
         henkilo6.setSuosio(1);
@@ -400,7 +399,8 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
         assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
-        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo6,henkilo5));
+        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo5,henkilo6));
+        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo1, henkilo2));
     }
     
     @Test
@@ -449,7 +449,7 @@ public class SitsaajienRyhmittajaTest {
         henkilo1.setSuosio(10);
         henkilo2.setSuosio(9);
         henkilo3.setSuosio(7);
-        henkilo4.setSuosio(6);
+
         henkilo2.setKaveri(henkilo3,henkilo4,henkilo5,henkilo6);
         henkilo5.setKaveri(henkilo2);
         manageri.ilmo.lisaaSitsaaja(henkilo1, henkilo2, henkilo3, henkilo4, henkilo5, henkilo6);
@@ -457,7 +457,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
         assertEquals(henkilo5, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
-        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo3,henkilo5));
+        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo4,henkilo5));
     }
     @Test
     public void kolmanneksiAvecinKaveriJokaEitykannytKummastakaan(){
