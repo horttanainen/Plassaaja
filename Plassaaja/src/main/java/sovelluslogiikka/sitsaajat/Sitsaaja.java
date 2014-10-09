@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sovelluslogiikka.sitsaajatJaPoyta;
+package sovelluslogiikka.sitsaajat;
 
 import java.util.*;
 import java.util.Objects;
@@ -19,7 +19,7 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
     private String avecToive;
     private String nimi;
     private Sitsaaja avec;
-    private String[] kaveriToiveet;
+    private List<String> kaveriToiveet;
     public List<Sitsaaja> kaverit;
     private int suosio;
     private Sukupuoli sukupuoli;
@@ -29,16 +29,8 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
  * @param avecToive Sitsaajan avec toive (ei välttämättä toteudu, jos ei molempien hyväksyntää)
  */
     public Sitsaaja(String nimi, String avecToive) {
-        if (!nimi.matches("[a-zA-Z a-zA-Z]+") && nimi != null) {
-            throw new IllegalArgumentException("Nimen pitaa olla muotoa: Matti "
-                    + "Meikalainen");
-        }
         if (nimi == null) {
             throw new NullPointerException("Nimi ei saa olla Null");
-        }
-        if (avecToive != null && !avecToive.matches("[a-zA-Z a-zA-Z]+")) {
-            throw new IllegalArgumentException("Avecin nimi on joko jatettava"
-                    + " tyhjaksi tai sen oltava muotoa: Matti Meikalainen");
         }
         if (nimi.equals(avecToive)) {
             avecToive = null;
@@ -47,6 +39,7 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
         this.avecToive = avecToive;
         this.kaverit = new ArrayList<>();
         this.suosio = 0;
+        this.kaveriToiveet=new ArrayList<>();
     }
     
     public void vaihdaSukupuolta(){
@@ -69,7 +62,9 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
     }
 
     public String[] getKaveriToive() {
-        return kaveriToiveet;
+        String[] tmp = new String[this.kaveriToiveet.size()];
+        tmp = this.kaveriToiveet.toArray(tmp);
+        return tmp;
     }
 
     public Sitsaaja getAvec() {
@@ -97,17 +92,13 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
     }
 
     public void setKaveriToive(String... kaverit) {
-        if(this.kaveriToiveet==null){
-        this.kaveriToiveet = kaverit;
-        }
-        else{
-            int j=this.kaveriToiveet.length;
             for (String a : kaverit) {
-                this.kaveriToiveet[j]=a;
-                j++;
+                if(!kaveriToiveet.contains(a)){
+                this.kaveriToiveet.add(a);
+                }
             }
         }
-    }
+   
     
     public void setSukupuoli(Sukupuoli sukupuoli){
         this.sukupuoli=sukupuoli;

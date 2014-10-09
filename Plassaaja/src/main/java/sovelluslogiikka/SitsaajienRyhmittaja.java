@@ -6,7 +6,7 @@
 package sovelluslogiikka;
 
 import java.util.*;
-import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 
 /**
  * SitsaajienRyhmittaja ryhmittaa sitsaajat suosion perusteella
@@ -260,6 +260,13 @@ public class SitsaajienRyhmittaja {
         loytyykoKaverilleAvec(sitsaaja, suosituin,avec);
     }
 
+    /**
+     * Tarkistaa onko ryhmaan liiteytylle kaverille olemassa aveccia.
+     * Jos aveccia ei loydy, sopiva avec etsitaan.
+     * @param sitsaaja kaveri, jolle avec etsitaan.
+     * @param suosituin Ryhman suosituin sitsaaja.
+     * @param avec Ryhman suosituimman avec.
+     */
     public void loytyykoKaverilleAvec(Sitsaaja sitsaaja, Sitsaaja suosituin, Sitsaaja avec) {
         if (sitsaaja.getAvec() == null) {
             kaverilleMahdollisetAvecitPisteyttamattomista(sitsaaja,false);
@@ -270,13 +277,25 @@ public class SitsaajienRyhmittaja {
             ryhmitettyLista.add(sitsaaja.getAvec());
         }
     }
-    
+    /**
+     * Asettaa kaverukselle avecin ahdollisten aveccien listaan.
+     * @param kaveri Sitsaaja jolle avec haettiin.
+     * @param sitsaaja Sitsaajalle sopiva avec.
+     */
     private void asetaKaverijaAvec(Sitsaaja kaveri, Sitsaaja sitsaaja){
         kaveri.setAvec(sitsaaja);
             sitsaaja.setAvec(kaveri);
             ryhmitettyLista.add(kaveri);
     }
-    
+    /**
+     *  Hakee mahdolliset avecit kaverille pisteyttamattomien joukosta. Sopivin avec on joko toivonut
+     * ryhman suosituinta aveciksi tai tämän aveccia. Kaveri ja avec asetetaan
+     * aveceiksi, kun ryhmaan sopivin on loydetty.
+     * @param kaveri Sitsaaja jolle haetaan aveccia.
+     * @param suosituin Ryhman suosituin.
+     * @param avec Ryhman suosituimman avec.
+     * @param vikaKierros false kun haetaan aveciksi vastakkaisen sukupuolen edustajaa.
+     */
     private void asetaMahdollisetAvecit(Sitsaaja kaveri, Sitsaaja suosituin, Sitsaaja avec, boolean vikaKierros){
         for (Sitsaaja sitsaaja : this.mahdollisetAvecit) {
             if (ryhmitettyLista.contains(sitsaaja)) {

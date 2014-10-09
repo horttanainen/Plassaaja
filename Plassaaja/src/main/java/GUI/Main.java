@@ -1,6 +1,6 @@
-package main;
+package GUI;
 
-import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 import sovelluslogiikka.AveccienParittaja;
 import sovelluslogiikka.SitsiIlmo;
 
@@ -11,7 +11,9 @@ import sovelluslogiikka.SitsiIlmo;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Kayttoliittyma kayttis=new Kayttoliittyma();
+        kayttis.run();
+        
 
     }
 }

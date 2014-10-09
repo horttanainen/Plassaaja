@@ -7,7 +7,7 @@
 package sovelluslogiikka;
 
 import java.util.*;
-import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 
 /**
  *SitsiIlmo toimii sitsien ilmona ja sen kautta sitsaajat lisätään ja poistetaan

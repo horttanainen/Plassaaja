@@ -8,7 +8,7 @@ package sovelluslogiikka;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 
 /**
  *SitsaajienPisteyttajan on tarkoitus jarjestaa Sitsaajat järjestykseen siten,
@@ -33,7 +33,7 @@ public class SitsaajienPisteyttaja{
     /**
      * Pisteyttaa kaikki sitseille ilmoitetut sitsaajat
      */
-    protected void pisteytaSitsaajat(){
+    public void pisteytaSitsaajat(){
         setSitsaajaLista();
         for(Sitsaaja a: sitsaajat){
             pisteytaSitsaaja(a);

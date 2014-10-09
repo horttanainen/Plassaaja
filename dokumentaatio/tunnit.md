@@ -37,3 +37,15 @@ Ryhmittäjän bugiesta päästy eroon ja testit menevät läpi.
 To 2.10 6 tuntia
 
 Yritin keksiä hyvää tapaa plassata kaveriporukat pöytiin. JavaDoc melkein valmis.
+
+Ti 7.10 6 tuntia.
+
+Plassaus edistyy.
+
+Ke 8.10 8 tuntia.
+
+Plassaaja valmis. Testit puuttuu.
+
+To 9.10 8 tuntia.
+
+Tein yksinkertaisen käyttöliittymän. Testaus aloitettu plassaaja luokalle. Loin taulukkoluokan joka, tulostaa poydan sisallon JTableen.

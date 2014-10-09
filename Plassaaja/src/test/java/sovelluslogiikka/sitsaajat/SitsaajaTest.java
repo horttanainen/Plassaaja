@@ -4,12 +4,13 @@
  * and open the template in the editor.
  */
 
-package sovelluslogiikka.sitsaajatJaPoyta;
+package sovelluslogiikka.sitsaajat;
 
+import sovelluslogiikka.sitsaajat.Sukupuoli;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,18 +46,6 @@ public class SitsaajaTest {
     @Test
     public void OikeanAvecToiveenAsetusOnnistuu(){
         assertEquals("Maija Muukalainen", henkilo.getAvecToive());
-    }
-    
-
-    
-    @Test(expected = IllegalArgumentException.class)
-    public void nimessaVainKirjaimia(){
-        henkilo= new Sitsaaja("124214 3443asdf", null);
-    }
-
-    @Test (expected = IllegalArgumentException.class)
-    public void avecinNimessaVainKirjaimia(){
-        henkilo=new Sitsaaja("joko mias", "234124 3453453");
     }
     
     @Test(expected = NullPointerException.class)

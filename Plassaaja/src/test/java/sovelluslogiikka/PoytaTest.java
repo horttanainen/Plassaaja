@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sovelluslogiikka.sitsaajatJaPoyta;
+package sovelluslogiikka;
 
+import sovelluslogiikka.Poyta;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.After;
@@ -15,7 +16,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.w3c.dom.ls.LSInput;
 import sovelluslogiikka.SitsiIlmo;
-import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 
 /**
  *

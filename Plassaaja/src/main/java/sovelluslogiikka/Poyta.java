@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sovelluslogiikka.sitsaajatJaPoyta;
+package sovelluslogiikka;
 
 import java.util.*;
 import sovelluslogiikka.SitsiIlmo;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 
 /**
  *Poyta on luokka, jossa on sitsaajien paikat poydassa. Poyta pitaa kasitella 

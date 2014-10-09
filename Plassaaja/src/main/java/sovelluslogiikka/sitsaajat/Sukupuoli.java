@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sovelluslogiikka.sitsaajatJaPoyta;
+package sovelluslogiikka.sitsaajat;
 
 /**
  *Sukupuoli on sitsaajan sukupuoli ja sitä tarvitaan plassatessa, koska olemme
@@ -12,4 +12,5 @@ package sovelluslogiikka.sitsaajatJaPoyta;
  */
 public enum Sukupuoli {
     Mies, Nainen;
+    
 }

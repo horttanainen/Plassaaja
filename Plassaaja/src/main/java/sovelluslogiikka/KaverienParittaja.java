@@ -5,7 +5,7 @@
  */
 package sovelluslogiikka;
 
-import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 import java.util.*;
 
 /**

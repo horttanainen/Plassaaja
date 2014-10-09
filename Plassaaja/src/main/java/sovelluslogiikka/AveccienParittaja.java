@@ -6,7 +6,7 @@
 
 package sovelluslogiikka;
 
-import sovelluslogiikka.sitsaajatJaPoyta.Sitsaaja;
+import sovelluslogiikka.sitsaajat.Sitsaaja;
 import java.util.*;
 /**
  *AveccienParittaja nimensä mukaisesti parittaa sitsaajille avecit

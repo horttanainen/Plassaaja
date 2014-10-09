@@ -38,14 +38,17 @@ public class SitsaajienManagerointi {
      */
     public Plassaaja plassaaja;
     
+    public Poyta poyta;
+    
     
     public SitsaajienManagerointi(){
         this.ilmo=new SitsiIlmo();
+        this.poyta=new Poyta();
         this.aveccienParittaja=new AveccienParittaja(ilmo);
         this.kaverienParittaja=new KaverienParittaja(ilmo);
         this.sitsaajienPisteyttaja=new SitsaajienPisteyttaja(ilmo);
         this.sitsaajienRyhmittaja=new SitsaajienRyhmittaja(sitsaajienPisteyttaja);
-//        this.plassaaja=new Plassaaja(sitsaajienRyhmittaja);
+        this.plassaaja=new Plassaaja(sitsaajienRyhmittaja,poyta);
     }
 
 }
