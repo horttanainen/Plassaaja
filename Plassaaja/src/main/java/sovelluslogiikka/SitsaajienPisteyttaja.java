@@ -96,7 +96,7 @@ public class SitsaajienPisteyttaja{
                 loytyi++;
             }
         }
-        if(a.getAvec()!=null) loytyi++;
+//        if(a.getAvec()!=null) loytyi++;
         a.setSuosio(loytyi);
         
     }

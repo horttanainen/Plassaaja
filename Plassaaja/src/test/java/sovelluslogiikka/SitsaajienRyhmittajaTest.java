@@ -64,7 +64,82 @@ public class SitsaajienRyhmittajaTest {
         assertEquals(henkilo2, lista.get(0));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo2,henkilo1));
     }
-
+    
+    @Test
+    public void getRyhmitettyListaPalauttaaSitsaajatjotkaOvatRyhmassa(){
+        henkilo1 = new Sitsaaja("M M", null);
+        henkilo2 = new Sitsaaja("V S", null);
+        henkilo3 = new Sitsaaja("K K", null);
+        henkilo4 = new Sitsaaja("T M", null);
+        henkilo5 = new Sitsaaja("K S", null);
+        henkilo6 = new Sitsaaja("K T", null);
+        henkilo1.setSukupuoli(Sukupuoli.Mies);
+        henkilo2.setSukupuoli(Sukupuoli.Nainen);
+        henkilo3.setSukupuoli(Sukupuoli.Mies);
+        henkilo4.setSukupuoli(Sukupuoli.Mies);
+        henkilo5.setSukupuoli(Sukupuoli.Nainen);
+        henkilo6.setSukupuoli(Sukupuoli.Mies);
+        henkilo1.setSuosio(10);
+        henkilo2.setSuosio(8);
+        henkilo1.setKaveri(henkilo6);
+        henkilo2.setKaveri(henkilo6);
+        henkilo6.setKaveri(henkilo1, henkilo2);
+        manageri.ilmo.lisaaSitsaaja(henkilo1, henkilo2, henkilo3, henkilo4, henkilo5, henkilo6);
+        manageri.sitsaajienPisteyttaja.setSitsaajaLista();
+        manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
+        manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
+        List<Sitsaaja> sitsaajatRyhmassa=manageri.sitsaajienRyhmittaja.getRyhmitettyLista();
+        List<Sitsaaja> sitsajatilmanRyhmaa=manageri.sitsaajienRyhmittaja.getSitsaajatIlmanKaveriporukkaa();
+        assertTrue(sitsaajatRyhmassa.contains(henkilo1));
+        assertTrue(sitsaajatRyhmassa.contains(henkilo2));
+        assertTrue(sitsaajatRyhmassa.contains(henkilo5));
+        assertTrue(sitsaajatRyhmassa.contains(henkilo6));
+        assertFalse(sitsaajatRyhmassa.contains(henkilo3));
+        assertFalse(sitsaajatRyhmassa.contains(henkilo4));
+        assertTrue(sitsajatilmanRyhmaa.contains(henkilo4));
+        assertTrue(sitsajatilmanRyhmaa.contains(henkilo3));
+        assertFalse(sitsajatilmanRyhmaa.contains(henkilo2));
+    }
+    
+    @Test
+    public void merkkaakoKaveriporukanRajanOikein(){
+        henkilo1 = new Sitsaaja("M M", null);
+        henkilo2 = new Sitsaaja("V S", null);
+        henkilo3 = new Sitsaaja("K K", null);
+        henkilo4 = new Sitsaaja("T M", null);
+        henkilo5 = new Sitsaaja("K S", null);
+        henkilo6 = new Sitsaaja("K T", null);
+        Sitsaaja henkilo7 = new Sitsaaja("A", null);
+        Sitsaaja henkilo8 =new Sitsaaja("B", null);
+        Sitsaaja henkilo9=new Sitsaaja("C", null);
+        Sitsaaja henkilo10=new Sitsaaja("D", null);
+        henkilo7.setSukupuoli(Sukupuoli.Mies);
+        henkilo8.setSukupuoli(Sukupuoli.Mies);
+        henkilo9.setSukupuoli(Sukupuoli.Mies);
+        henkilo10.setSukupuoli(Sukupuoli.Mies);
+        henkilo1.setSukupuoli(Sukupuoli.Mies);
+        henkilo2.setSukupuoli(Sukupuoli.Nainen);
+        henkilo3.setSukupuoli(Sukupuoli.Mies);
+        henkilo4.setSukupuoli(Sukupuoli.Mies);
+        henkilo5.setSukupuoli(Sukupuoli.Nainen);
+        henkilo6.setSukupuoli(Sukupuoli.Mies);
+        henkilo1.setSuosio(10);
+        henkilo2.setSuosio(8);
+        henkilo1.setKaveri(henkilo6);
+        henkilo2.setKaveri(henkilo6);
+        henkilo6.setKaveri(henkilo1, henkilo2);
+        henkilo7.setSuosio(3);
+        henkilo8.setSuosio(2);
+        henkilo9.setKaveri(henkilo7, henkilo8);
+        manageri.ilmo.lisaaSitsaaja(henkilo1, henkilo2, henkilo3, henkilo4, henkilo5, henkilo6,henkilo7,henkilo8,henkilo9,henkilo10);
+        manageri.sitsaajienPisteyttaja.setSitsaajaLista();
+        manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
+        manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
+        List<Integer> ryhmienPaikat=manageri.sitsaajienRyhmittaja.getKaveririporukoidenPaikatListassa();
+        assertTrue(ryhmienPaikat.get(0)==3);
+        assertTrue(ryhmienPaikat.get(1)==7); 
+    }
+    
     @Test
     public void ryhmittajaJarjestaaToiseksiSuosituimmanAvecinJosLoytyy() {
         henkilo1 = new Sitsaaja("Matti Meikalainen", "Vilma Sutela");
@@ -571,7 +646,7 @@ public class SitsaajienRyhmittajaTest {
         assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
     }
     @Test
-    public void kolmanneksiSeuraavaksiSuosituinJokaEitykannytKummastakaan(){
+    public void kolmanneksiSeuraavaksiSuosiotonJokaEitykannytKummastakaan(){
         henkilo1 = new Sitsaaja("M M", null);
         henkilo2 = new Sitsaaja("V S", null);
         henkilo3 = new Sitsaaja("K K", null);
@@ -592,7 +667,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo4, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
     }
     
     

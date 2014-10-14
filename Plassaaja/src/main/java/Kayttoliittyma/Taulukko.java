@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Kayttoliittyma;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -25,15 +25,14 @@ public class Taulukko extends JFrame {
     public Taulukko(Poyta poyta){
         setLayout(new FlowLayout());
         this.sitsaajat=poyta.getPoyta();
-        String[] sarakkeidenNimet=new String[(poyta.getPoyta().size()/2)];
+        String[] sarakkeidenNimet=new String[(sitsaajat.size()/2)];
         int i=0;
-        Sitsaaja[][] data=new Sitsaaja[(poyta.getPoyta().size()/2)][2];
-        for (int j = 0; j < sitsaajat.size()-1;) {
+        String[][] data=new String[50][50];
+        for (int j = 0; j < sitsaajat.size()-1;j+=2) {
             sarakkeidenNimet[i]="Paikat:"+i+ " ja "+i+1;
-            data[i][i]=sitsaajat.get(j);
-            data[i][i+1]=sitsaajat.get(j+1);
-            j+=2;
-            i++;
+            data[i][i]=sitsaajat.get(j).toString();
+            data[i][i+1]=sitsaajat.get(j+1).toString();
+            i+=2;
         }
          taulukko=new JTable(data, sarakkeidenNimet);
          taulukko.setPreferredScrollableViewportSize(new Dimension(100,1000));

@@ -29,7 +29,7 @@ public class SitsaajienRyhmittaja {
         kaveriporukoidenPaikatRyhmitetyssaListassa = new ArrayList<>();
         this.pisteyttaja = pisteyttaja;
         ryhmitettyLista = new ArrayList<>();
-        mahdollisetAvecit=new ArrayList<>();
+        mahdollisetAvecit = new ArrayList<>();
     }
 
     /**
@@ -66,7 +66,7 @@ public class SitsaajienRyhmittaja {
             ryhmitettyLista.add(suosituin.getAvec());
             suosituimmanJaAvecinKaveritoiveet(suosituin, suosituin.getAvec());
         } else {
-            josAvecEiLoydy(suosituin, false, true,false);
+            josAvecEiLoydy(suosituin, false, true, false);
         }
     }
 
@@ -90,7 +90,7 @@ public class SitsaajienRyhmittaja {
                 if (i == tmp.size() - 1 && loytyykoPisteytetyista == true) {
                     josAvecEiLoydy(sitsaaja, onkoVikaKierros, false, sukupuolenVaihdos);
                     break;
-                } else if (i == tmp.size() - 1 && loytyykoPisteytetyista == false &&sukupuolenVaihdos==false) {
+                } else if (i == tmp.size() - 1 && loytyykoPisteytetyista == false && sukupuolenVaihdos == false) {
                     sitsaaja.vaihdaSukupuolta();
                     josAvecEiLoydy(sitsaaja, onkoVikaKierros, true, true);
                     break;
@@ -106,7 +106,7 @@ public class SitsaajienRyhmittaja {
             }
             break;
         }
-        if (sukupuolenVaihdos==true){
+        if (sukupuolenVaihdos == true) {
             sitsaaja.vaihdaSukupuolta();
         }
     }
@@ -132,7 +132,6 @@ public class SitsaajienRyhmittaja {
         }
 
         asetaKaveriListastaJosSitsaajallaJaAvecillaEiToiveita(sitsaaja, avec);
-
         Sitsaaja viimeinenRyhmassa = this.ryhmitettyLista.get(ryhmitettyLista.size() - 1);
         merkkaaKaveriporukanPaikkaRyhmitettyynListaan(viimeinenRyhmassa);
     }
@@ -150,7 +149,17 @@ public class SitsaajienRyhmittaja {
                 continue;
             }
             if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
+                asetaKaveri(sitsaaja, suosituin, avec);
+
+            }
+        }
+
+        for (Sitsaaja sitsaaja : this.sitsaajatIlmanpisteita) {
+            if (ryhmitettyLista.contains(sitsaaja)) {
+                continue;
+            }
+            if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec)) {
+                asetaKaveri(sitsaaja, suosituin, avec);
 
             }
         }
@@ -161,7 +170,7 @@ public class SitsaajienRyhmittaja {
             }
 
             if (sitsaaja.kaverit.contains(suosituin)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
+                asetaKaveri(sitsaaja, suosituin, avec);
             }
         }
 
@@ -171,7 +180,7 @@ public class SitsaajienRyhmittaja {
             }
 
             if (sitsaaja.kaverit.contains(suosituin)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
+                asetaKaveri(sitsaaja, suosituin, avec);
             }
         }
 
@@ -181,7 +190,7 @@ public class SitsaajienRyhmittaja {
             }
 
             if (sitsaaja.kaverit.contains(avec)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
+                asetaKaveri(sitsaaja, suosituin, avec);
             }
         }
 
@@ -191,10 +200,42 @@ public class SitsaajienRyhmittaja {
             }
 
             if (sitsaaja.kaverit.contains(avec)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
+                asetaKaveri(sitsaaja, suosituin, avec);
             }
         }
+        
 
+       if(!loytyikoKavereita(suosituin,avec)){
+           for (Sitsaaja sitsaaja : this.sitsaajatIlmanpisteita) {
+            if (ryhmitettyLista.contains(sitsaaja)) {
+                continue;
+            }
+            asetaKaveri(sitsaaja, suosituin, avec);
+            return;
+               
+        }
+           
+           for (Sitsaaja sitsaaja : this.sitsaajatPisteytettyna) {
+            if (ryhmitettyLista.contains(sitsaaja)) {
+                continue;
+            }
+            asetaKaveri(sitsaaja, suosituin, avec);
+            return;
+               
+        }
+       }
+        
+
+    }
+    
+    private boolean loytyikoKavereita(Sitsaaja suosituin, Sitsaaja avec){
+        for(Sitsaaja sitsaaja:this.ryhmitettyLista){
+            if(sitsaaja.kaverit.contains(avec)||sitsaaja.kaverit.contains(suosituin)){
+                return true;
+            }
+        }
+        
+        return false;
     }
 
     /**
@@ -212,7 +253,7 @@ public class SitsaajienRyhmittaja {
                 continue;
             }
             if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
+                asetaKaveri(sitsaaja, suosituin, avec);
 
             }
         }
@@ -222,7 +263,7 @@ public class SitsaajienRyhmittaja {
             }
 
             if (sitsaaja.kaverit.contains(suosituin)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
+                asetaKaveri(sitsaaja, suosituin, avec);
 
             }
         }
@@ -232,7 +273,7 @@ public class SitsaajienRyhmittaja {
             }
 
             if (sitsaaja.kaverit.contains(avec)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
+                asetaKaveri(sitsaaja, suosituin, avec);
 
             }
         }
@@ -241,10 +282,7 @@ public class SitsaajienRyhmittaja {
             if (ryhmitettyLista.contains(sitsaaja)) {
                 continue;
             }
-
-            if (!sitsaaja.kaverit.contains(suosituin) || !sitsaaja.kaverit.contains(avec)) {
-                asetaKaveri(sitsaaja,suosituin,avec);
-            }
+            asetaKaveri(sitsaaja, suosituin, avec);
         }
 
     }
@@ -257,60 +295,66 @@ public class SitsaajienRyhmittaja {
      */
     private void asetaKaveri(Sitsaaja sitsaaja, Sitsaaja suosituin, Sitsaaja avec) {
         ryhmitettyLista.add(sitsaaja);
-        loytyykoKaverilleAvec(sitsaaja, suosituin,avec);
+        loytyykoKaverilleAvec(sitsaaja, suosituin, avec);
     }
 
     /**
-     * Tarkistaa onko ryhmaan liiteytylle kaverille olemassa aveccia.
-     * Jos aveccia ei loydy, sopiva avec etsitaan.
+     * Tarkistaa onko ryhmaan liiteytylle kaverille olemassa aveccia. Jos
+     * aveccia ei loydy, sopiva avec etsitaan.
+     *
      * @param sitsaaja kaveri, jolle avec etsitaan.
      * @param suosituin Ryhman suosituin sitsaaja.
      * @param avec Ryhman suosituimman avec.
      */
     public void loytyykoKaverilleAvec(Sitsaaja sitsaaja, Sitsaaja suosituin, Sitsaaja avec) {
         if (sitsaaja.getAvec() == null) {
-            kaverilleMahdollisetAvecitPisteyttamattomista(sitsaaja,false);
+            kaverilleMahdollisetAvecitPisteyttamattomista(sitsaaja, false);
             kaverilleMahdollisetAvecitPisteytetyista(sitsaaja, false);
-            asetaMahdollisetAvecit(sitsaaja,  suosituin, avec, false);
+            asetaMahdollisetAvecit(sitsaaja, suosituin, avec, false);
             this.mahdollisetAvecit.clear();
         } else {
             ryhmitettyLista.add(sitsaaja.getAvec());
         }
     }
+
     /**
      * Asettaa kaverukselle avecin ahdollisten aveccien listaan.
+     *
      * @param kaveri Sitsaaja jolle avec haettiin.
      * @param sitsaaja Sitsaajalle sopiva avec.
      */
-    private void asetaKaverijaAvec(Sitsaaja kaveri, Sitsaaja sitsaaja){
+    private void asetaKaverijaAvec(Sitsaaja kaveri, Sitsaaja sitsaaja) {
         kaveri.setAvec(sitsaaja);
-            sitsaaja.setAvec(kaveri);
-            ryhmitettyLista.add(kaveri);
+        sitsaaja.setAvec(kaveri);
+        ryhmitettyLista.add(kaveri.getAvec());
     }
+
     /**
-     *  Hakee mahdolliset avecit kaverille pisteyttamattomien joukosta. Sopivin avec on joko toivonut
-     * ryhman suosituinta aveciksi tai tämän aveccia. Kaveri ja avec asetetaan
-     * aveceiksi, kun ryhmaan sopivin on loydetty.
+     * Hakee mahdolliset avecit kaverille pisteyttamattomien joukosta. Sopivin
+     * avec on joko toivonut ryhman suosituinta aveciksi tai tämän aveccia.
+     * Kaveri ja avec asetetaan aveceiksi, kun ryhmaan sopivin on loydetty.
+     *
      * @param kaveri Sitsaaja jolle haetaan aveccia.
      * @param suosituin Ryhman suosituin.
      * @param avec Ryhman suosituimman avec.
-     * @param vikaKierros false kun haetaan aveciksi vastakkaisen sukupuolen edustajaa.
+     * @param vikaKierros false kun haetaan aveciksi vastakkaisen sukupuolen
+     * edustajaa.
      */
-    private void asetaMahdollisetAvecit(Sitsaaja kaveri, Sitsaaja suosituin, Sitsaaja avec, boolean vikaKierros){
+    private void asetaMahdollisetAvecit(Sitsaaja kaveri, Sitsaaja suosituin, Sitsaaja avec, boolean vikaKierros) {
         for (Sitsaaja sitsaaja : this.mahdollisetAvecit) {
             if (ryhmitettyLista.contains(sitsaaja)) {
                 continue;
             }
-            if(vikaKierros==true){
+            if (vikaKierros == true) {
                 if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec)) {
                     asetaKaverijaAvec(kaveri, sitsaaja);
-            return;
+                    return;
+                }
             }
-            }
-            
-            if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec) &&sitsaaja.getSukupuoli()!=kaveri.getSukupuoli()) {
-            asetaKaverijaAvec(kaveri, sitsaaja);
-            return;
+
+            if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec) && sitsaaja.getSukupuoli() != kaveri.getSukupuoli()) {
+                asetaKaverijaAvec(kaveri, sitsaaja);
+                return;
             }
         }
 
@@ -318,17 +362,17 @@ public class SitsaajienRyhmittaja {
             if (ryhmitettyLista.contains(sitsaaja)) {
                 continue;
             }
-             if(vikaKierros==true){
-            if (sitsaaja.kaverit.contains(suosituin)) {
-            asetaKaverijaAvec(kaveri, sitsaaja);
-            return;
+            if (vikaKierros == true) {
+                if (sitsaaja.kaverit.contains(suosituin)) {
+                    asetaKaverijaAvec(kaveri, sitsaaja);
+                    return;
 
-            }
+                }
             }
 
-            if (sitsaaja.kaverit.contains(suosituin) &&sitsaaja.getSukupuoli()!=kaveri.getSukupuoli()) {
-            asetaKaverijaAvec(kaveri, sitsaaja);
-            return;
+            if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.getSukupuoli() != kaveri.getSukupuoli()) {
+                asetaKaverijaAvec(kaveri, sitsaaja);
+                return;
 
             }
         }
@@ -336,81 +380,76 @@ public class SitsaajienRyhmittaja {
             if (ryhmitettyLista.contains(sitsaaja)) {
                 continue;
             }
-            if(vikaKierros==true){
-            if (sitsaaja.kaverit.contains(avec)) {
-            asetaKaverijaAvec(kaveri, sitsaaja);
-            return;
+            if (vikaKierros == true) {
+                if (sitsaaja.kaverit.contains(avec)) {
+                    asetaKaverijaAvec(kaveri, sitsaaja);
+                    return;
 
-            }
+                }
             }
 
-            if (sitsaaja.kaverit.contains(avec) &&sitsaaja.getSukupuoli()!=kaveri.getSukupuoli()) {
-            asetaKaverijaAvec(kaveri, sitsaaja);
-            return;
+            if (sitsaaja.kaverit.contains(avec) && sitsaaja.getSukupuoli() != kaveri.getSukupuoli()) {
+                asetaKaverijaAvec(kaveri, sitsaaja);
+                return;
 
             }
         }
 
         for (Sitsaaja sitsaaja : this.mahdollisetAvecit) {
-            if(vikaKierros==true &&!ryhmitettyLista.contains(sitsaaja)){
-            if (!sitsaaja.kaverit.contains(suosituin) || !sitsaaja.kaverit.contains(avec)) {
-            asetaKaverijaAvec(kaveri, sitsaaja);
-            return;
+            if (vikaKierros == true && !ryhmitettyLista.contains(sitsaaja)) {
+                asetaKaverijaAvec(kaveri, sitsaaja);
+                return;
             }
-            }
-            if (ryhmitettyLista.contains(sitsaaja)  || sitsaaja.getSukupuoli()==kaveri.getSukupuoli()) {
+            if (ryhmitettyLista.contains(sitsaaja) || sitsaaja.getSukupuoli() == kaveri.getSukupuoli()) {
                 continue;
             }
-            
 
-            if (!sitsaaja.kaverit.contains(suosituin) || !sitsaaja.kaverit.contains(avec)) {
             asetaKaverijaAvec(kaveri, sitsaaja);
             return;
-            }
         }
-        
-        if(vikaKierros==false){
+
+        if (vikaKierros == false) {
             asetaMahdollisetAvecit(kaveri, suosituin, avec, true);
         }
     }
 
-    private void kaverilleMahdollisetAvecitPisteytetyista(Sitsaaja sitsaaja,boolean onkoSukupuoliVaihdettu) {
+    private void kaverilleMahdollisetAvecitPisteytetyista(Sitsaaja sitsaaja, boolean onkoSukupuoliVaihdettu) {
         List<Sitsaaja> tmp = sitsaajatPisteytettyna;
         for (int i = 0; i < tmp.size(); i++) {
             if (tmp.get(i) == null || ryhmitettyLista.contains(tmp.get(i)) || tmp.get(i).getSukupuoli() == sitsaaja.getSukupuoli() || tmp.get(i).getAvec() != null) {
-                if (i == tmp.size() - 1 && onkoSukupuoliVaihdettu==false) {
+                if (i == tmp.size() - 1 && onkoSukupuoliVaihdettu == false) {
                     sitsaaja.vaihdaSukupuolta();
-                    kaverilleMahdollisetAvecitPisteytetyista(sitsaaja,true);
-                    break;
+                    kaverilleMahdollisetAvecitPisteytetyista(sitsaaja, true);
+                    return;
                 }
                 continue;
             }
-            
+
             Sitsaaja mahdollinenAvec = tmp.get(i);
             mahdollisetAvecit.add(mahdollinenAvec);
         }
-        if(onkoSukupuoliVaihdettu==true){
+        if (onkoSukupuoliVaihdettu == true) {
             sitsaaja.vaihdaSukupuolta();
         }
     }
-    
+
     private void kaverilleMahdollisetAvecitPisteyttamattomista(Sitsaaja sitsaaja, boolean onkoSukupuoliVaihdettu) {
         List<Sitsaaja> tmp = sitsaajatIlmanpisteita;
 
         for (int i = 0; i < tmp.size(); i++) {
             if (tmp.get(i) == null || ryhmitettyLista.contains(tmp.get(i)) || tmp.get(i).getSukupuoli() == sitsaaja.getSukupuoli() || tmp.get(i).getAvec() != null) {
-                if (i == tmp.size() - 1 && onkoSukupuoliVaihdettu==false) {
+                if (i == tmp.size() - 1 && onkoSukupuoliVaihdettu == false) {
                     sitsaaja.vaihdaSukupuolta();
-                    kaverilleMahdollisetAvecitPisteyttamattomista(sitsaaja,true);
-                    break;
+                    kaverilleMahdollisetAvecitPisteyttamattomista(sitsaaja, true);
+                    return;
                 }
                 continue;
             }
-            
+
             Sitsaaja mahdollinenAvec = tmp.get(i);
             mahdollisetAvecit.add(mahdollinenAvec);
         }
-        if(onkoSukupuoliVaihdettu==true){
+        if (onkoSukupuoliVaihdettu == true) {
             sitsaaja.vaihdaSukupuolta();
         }
     }
@@ -421,6 +460,9 @@ public class SitsaajienRyhmittaja {
 
     public List<Sitsaaja> getSitsaajatIlmanKaveriporukkaa() {
         List<Sitsaaja> tmp = new ArrayList<>();
+        if(sitsaajatIlmanpisteita.isEmpty()){
+           return tmp;
+        }
         for (Sitsaaja a : this.sitsaajatIlmanpisteita) {
             if (this.ryhmitettyLista.contains(a)) {
                 continue;

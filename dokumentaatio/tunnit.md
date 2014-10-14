@@ -49,3 +49,15 @@ Plassaaja valmis. Testit puuttuu.
 To 9.10 8 tuntia.
 
 Tein yksinkertaisen käyttöliittymän. Testaus aloitettu plassaaja luokalle. Loin taulukkoluokan joka, tulostaa poydan sisallon JTableen.
+
+Pe 10.10 6 tuntia.
+
+Plassaaja plassa pöydän väärin.
+
+La 11.10 4 tuntia.
+
+Edelleen.
+
+Ma 13.10 8 tuntia
+
+Tein luokan uudestaan. Ei toimi.

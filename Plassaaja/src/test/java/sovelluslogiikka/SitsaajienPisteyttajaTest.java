@@ -53,8 +53,8 @@ public class SitsaajienPisteyttajaTest {
         manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
         List<Sitsaaja> lista = new ArrayList<>();
         lista.add(henkilo2);
-        lista.add(henkilo4);
         lista.add(henkilo3);
+        lista.add(henkilo4);
         lista.add(henkilo1);
         lista.add(henkilo5);
         assertEquals(lista, manageri.sitsaajienPisteyttaja.getPisteytettyLista());
@@ -75,7 +75,7 @@ public class SitsaajienPisteyttajaTest {
     @Test
     public void pisteyttaakoPisteytaSitsaajaOikein() {
         manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
-        assertEquals(6, henkilo2.getSuosio());
+        assertEquals(5, henkilo2.getSuosio());
     }
 
     @Test

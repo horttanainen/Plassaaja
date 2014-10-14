@@ -34,4 +34,14 @@ public class Poyta {
     public List<Sitsaaja> getPoyta(){
         return this.poyta;
     }
+    
+    public void alustaPoyta(int koko){
+        for (int i = 0; i < koko; i++) {
+            poyta.add(null);
+        }
+    }
+    
+    public void lisaaSitsaaja(Sitsaaja sitsaaja){
+        this.poyta.add(sitsaaja);
+    }
 }
