@@ -9,7 +9,7 @@ import sovelluslogiikka.sitsaajat.Sitsaaja;
 import java.util.*;
 
 /**
- *Parittaa Sitsaajan ilmentymälle sitsaajista kaverit mikäli kaverit löytyvät
+ *Parittaa Sitsaajaoliollle sitsaajista kaverit mikäli kaverit löytyvät
  *ilmoittautuneiden joukosta. Toisin kuin Aveccienparitustilanteessa: 
  *kaveriksiparittaminen ei tarvitse molempien henkilöiden toivomusta.
  * @author Santeri
@@ -19,7 +19,7 @@ public class KaverienParittaja{
     private List<Sitsaaja> sitsaajat;
     private SitsiIlmo ilmo;
     /**
-     * Luo kaverienparittajan ja alustaa tälle Sitsiilmon, josta parittaja löytää
+     * Luo kaverienparittajan ja liittää tähän SitsiIlmo-olion, josta parittaja löytää
      * paritettavat sitsaajat.
      * @param ilmo 
      */
@@ -39,8 +39,8 @@ public class KaverienParittaja{
  */
     public void paritaKaverit() {
         setSitsaajaLista();
-        for (Sitsaaja a : sitsaajat) {
-            paritaSitsaajalleKaveri(a);
+        for (Sitsaaja sitsaaja : sitsaajat) {
+            paritaSitsaajalleKaveri(sitsaaja);
         }
     }
     /**

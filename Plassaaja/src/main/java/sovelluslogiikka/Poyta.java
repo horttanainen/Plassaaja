@@ -25,8 +25,13 @@ import sovelluslogiikka.sitsaajat.Sitsaaja;
  */
 
 public class Poyta {
+    /**
+     * ArrayList johon sitsaajat plassataan. 
+     */
     private List<Sitsaaja> poyta;
-
+/**
+ * Luo poytaolion.
+ */
     public Poyta(){
         this.poyta= new ArrayList<>();
 }
@@ -35,12 +40,10 @@ public class Poyta {
         return this.poyta;
     }
     
-    public void alustaPoyta(int koko){
-        for (int i = 0; i < koko; i++) {
-            poyta.add(null);
-        }
-    }
-    
+    /**
+     * Lisaa sitsaajan poytaan.
+     * @param sitsaaja Lisattava sitsaaja.
+     */
     public void lisaaSitsaaja(Sitsaaja sitsaaja){
         this.poyta.add(sitsaaja);
     }

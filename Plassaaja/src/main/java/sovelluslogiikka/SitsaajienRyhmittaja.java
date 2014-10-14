@@ -20,16 +20,19 @@ public class SitsaajienRyhmittaja {
 
     private List<Sitsaaja> sitsaajatPisteytettyna;
     private List<Sitsaaja> sitsaajatIlmanpisteita;
-    private List<Sitsaaja> ryhmitettyLista;
+    private List<Sitsaaja> joLisatytSitsaajat;
     private List<Integer> kaveriporukoidenPaikatRyhmitetyssaListassa;
     private SitsaajienPisteyttaja pisteyttaja;
-    private List<Sitsaaja> mahdollisetAvecit;
+    private List<Sitsaaja> mahdollisetAvecitKaverille;
+    private List<List<Sitsaaja>> kaveriporukat;
+    private List<Sitsaaja> porukkaKyseisellaIteraatiolla;
+    private int poydanKoko;
 
     public SitsaajienRyhmittaja(SitsaajienPisteyttaja pisteyttaja) {
         kaveriporukoidenPaikatRyhmitetyssaListassa = new ArrayList<>();
         this.pisteyttaja = pisteyttaja;
-        ryhmitettyLista = new ArrayList<>();
-        mahdollisetAvecit = new ArrayList<>();
+        joLisatytSitsaajat = new ArrayList<>();
+        kaveriporukat=new ArrayList<>();
     }
 
     /**
@@ -38,12 +41,17 @@ public class SitsaajienRyhmittaja {
     public void ryhmitaSitsaajat() {
         SetListat();
         for (Sitsaaja sitsaaja : sitsaajatPisteytettyna) {
-            if (this.ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
-            ensimmaiseksiSuosituinSitsaaja(sitsaaja);
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            RyhmanSuosituinSitsaaja(sitsaaja);
 
         }
+    }
+    
+    private boolean onkoSitsaajaJoPlassattu(Sitsaaja sitsaaja){
+        if (this.joLisatytSitsaajat.contains(sitsaaja)) {
+                return true;
+            }
+        return false;
     }
 
     /**
@@ -51,9 +59,19 @@ public class SitsaajienRyhmittaja {
      *
      * @param suosituin Sitsaaja jota on toivottu eniten.
      */
-    protected void ensimmaiseksiSuosituinSitsaaja(Sitsaaja suosituin) {
-        ryhmitettyLista.add(suosituin);
-        toiseksiSuosituimmanAvecjosLoytyy(suosituin);
+    protected void RyhmanSuosituinSitsaaja(Sitsaaja suosituin) {
+        porukkaKyseisellaIteraatiolla=new ArrayList<>();
+        porukkaKyseisellaIteraatiolla.add(suosituin);
+        joLisatytSitsaajat.add(suosituin);
+        suosituimmanAvecjosLoytyy(suosituin);
+        kaveriporukat.add(porukkaKyseisellaIteraatiolla);
+    }
+    
+    private boolean onkoKyseisenPorukkaJoLiianIso(){
+        if(porukkaKyseisellaIteraatiolla.size()>10){
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -61,13 +79,26 @@ public class SitsaajienRyhmittaja {
      *
      * @param suosituin Sitsaaja jota on toivottu eniten.
      */
-    protected void toiseksiSuosituimmanAvecjosLoytyy(Sitsaaja suosituin) {
-        if (suosituin.getAvec() != null && !ryhmitettyLista.contains(suosituin.getAvec())) {
-            ryhmitettyLista.add(suosituin.getAvec());
+    protected void suosituimmanAvecjosLoytyy(Sitsaaja suosituin) {
+        if (suosituin.getAvec() != null) {
+            porukkaKyseisellaIteraatiolla.add(suosituin.getAvec());
+            joLisatytSitsaajat.add(suosituin.getAvec());
             suosituimmanJaAvecinKaveritoiveet(suosituin, suosituin.getAvec());
         } else {
-            josAvecEiLoydy(suosituin, false, true, false);
+            josAvecEiLoydy(suosituin, true, false);
         }
+    }
+    
+    private boolean ovatkoSitsaajatSamaaSukupuolta(Sitsaaja sitsaaja, Sitsaaja avec){
+        if( avec.getSukupuoli() == sitsaaja.getSukupuoli()){
+            return true;
+        }
+        return false;
+    }
+    
+    private void asetaAveceiksi (Sitsaaja sitsaaja, Sitsaaja avec){
+        sitsaaja.setAvec(avec);
+            avec.setAvec(sitsaaja);
     }
 
     /**
@@ -80,30 +111,28 @@ public class SitsaajienRyhmittaja {
      * @param loytyykoPisteytetyista True jos aveccia ei ole haettu
      * pisteytettyjen sitsaajien joukosta.
      */
-    protected void josAvecEiLoydy(Sitsaaja sitsaaja, boolean onkoVikaKierros, boolean loytyykoPisteytetyista, boolean sukupuolenVaihdos) {
+    protected void josAvecEiLoydy(Sitsaaja sitsaaja, boolean loytyykoPisteytetyista, boolean sukupuolenVaihdos) {
         List<Sitsaaja> tmp = sitsaajatPisteytettyna;
         if (loytyykoPisteytetyista == false) {
             tmp = sitsaajatIlmanpisteita;
         }
         for (int i = 0; i < tmp.size(); i++) {
-            if (tmp.get(i) == null || ryhmitettyLista.contains(tmp.get(i)) || tmp.get(i).getSukupuoli() == sitsaaja.getSukupuoli() || tmp.get(i).getAvec() != null) {
+            if (tmp.get(i) == null || onkoSitsaajaJoPlassattu(tmp.get(i)) || ovatkoSitsaajatSamaaSukupuolta(sitsaaja, tmp.get(i))|| tmp.get(i).getAvec() != null) {
                 if (i == tmp.size() - 1 && loytyykoPisteytetyista == true) {
-                    josAvecEiLoydy(sitsaaja, onkoVikaKierros, false, sukupuolenVaihdos);
+                    josAvecEiLoydy(sitsaaja, false, sukupuolenVaihdos);
                     break;
                 } else if (i == tmp.size() - 1 && loytyykoPisteytetyista == false && sukupuolenVaihdos == false) {
                     sitsaaja.vaihdaSukupuolta();
-                    josAvecEiLoydy(sitsaaja, onkoVikaKierros, true, true);
+                    josAvecEiLoydy(sitsaaja, true, true);
                     break;
                 }
                 continue;
             }
-            Sitsaaja mahdollinenAvec = tmp.get(i);
-            sitsaaja.setAvec(mahdollinenAvec);
-            mahdollinenAvec.setAvec(sitsaaja);
-            ryhmitettyLista.add(mahdollinenAvec);
-            if (onkoVikaKierros == false) {
-                suosituimmanJaAvecinKaveritoiveet(sitsaaja, mahdollinenAvec);
-            }
+            Sitsaaja avec = tmp.get(i);
+            asetaAveceiksi(sitsaaja, avec);
+            porukkaKyseisellaIteraatiolla.add(avec);
+            joLisatytSitsaajat.add(avec);
+            suosituimmanJaAvecinKaveritoiveet(sitsaaja, avec);
             break;
         }
         if (sukupuolenVaihdos == true) {
@@ -132,8 +161,9 @@ public class SitsaajienRyhmittaja {
         }
 
         asetaKaveriListastaJosSitsaajallaJaAvecillaEiToiveita(sitsaaja, avec);
-        Sitsaaja viimeinenRyhmassa = this.ryhmitettyLista.get(ryhmitettyLista.size() - 1);
-        merkkaaKaveriporukanPaikkaRyhmitettyynListaan(viimeinenRyhmassa);
+        
+        laitaMerkkiTestaustaVarten();
+        
     }
 
     /**
@@ -145,19 +175,16 @@ public class SitsaajienRyhmittaja {
      */
     protected void asetaKaveriListastaJosSitsaajallaJaAvecillaEiToiveita(Sitsaaja suosituin, Sitsaaja avec) {
         for (Sitsaaja sitsaaja : this.sitsaajatPisteytettyna) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
-
             }
         }
 
         for (Sitsaaja sitsaaja : this.sitsaajatIlmanpisteita) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
 
@@ -165,83 +192,65 @@ public class SitsaajienRyhmittaja {
         }
 
         for (Sitsaaja sitsaaja : this.sitsaajatPisteytettyna) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
-
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(suosituin)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
             }
         }
 
         for (Sitsaaja sitsaaja : this.sitsaajatIlmanpisteita) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
-
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(suosituin)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
             }
         }
 
         for (Sitsaaja sitsaaja : this.sitsaajatPisteytettyna) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
-
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(avec)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
             }
         }
 
         for (Sitsaaja sitsaaja : this.sitsaajatIlmanpisteita) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
-
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(avec)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
             }
         }
-        
-
        if(!loytyikoKavereita(suosituin,avec)){
            for (Sitsaaja sitsaaja : this.sitsaajatIlmanpisteita) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             asetaKaveri(sitsaaja, suosituin, avec);
             return;
-               
         }
            
            for (Sitsaaja sitsaaja : this.sitsaajatPisteytettyna) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             asetaKaveri(sitsaaja, suosituin, avec);
-            return;
-               
+            return;    
         }
        }
-        
-
     }
     
     private boolean loytyikoKavereita(Sitsaaja suosituin, Sitsaaja avec){
-        for(Sitsaaja sitsaaja:this.ryhmitettyLista){
+        for(Sitsaaja sitsaaja:this.porukkaKyseisellaIteraatiolla){
             if(sitsaaja.kaverit.contains(avec)||sitsaaja.kaverit.contains(suosituin)){
                 return true;
             }
         }
-        
         return false;
     }
 
     /**
      * Asettaa ryhmään sitsaajat, jotka ovat toivoneet suosituinta ja aveccia
      * kaveriksi seuraavassa järjestyksessä.
-     *
      * @param sitsaajat lista avecin ja suosituimman TAI sitsaajan TAI avecin
      * kavereista.
      * @param suosituin Suosituin sitsaaja ryhmässä
@@ -249,42 +258,31 @@ public class SitsaajienRyhmittaja {
      */
     protected void asetaSitsaajalleJaAvecilleKaveri(List<Sitsaaja> sitsaajat, Sitsaaja suosituin, Sitsaaja avec) {
         for (Sitsaaja sitsaaja : sitsaajat) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
-
             }
         }
         for (Sitsaaja sitsaaja : sitsaajat) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
-
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(suosituin)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
-
             }
         }
         for (Sitsaaja sitsaaja : sitsaajat) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
-
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             if (sitsaaja.kaverit.contains(avec)) {
                 asetaKaveri(sitsaaja, suosituin, avec);
-
             }
         }
-
         for (Sitsaaja sitsaaja : sitsaajat) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+            if (onkoSitsaajaJoPlassattu(sitsaaja)) continue;
+            if(onkoKyseisenPorukkaJoLiianIso()) return;
             asetaKaveri(sitsaaja, suosituin, avec);
         }
-
     }
 
     /**
@@ -294,7 +292,8 @@ public class SitsaajienRyhmittaja {
      * @param sitsaaja Sitsaaja joka asetetaan kaveriksi
      */
     private void asetaKaveri(Sitsaaja sitsaaja, Sitsaaja suosituin, Sitsaaja avec) {
-        ryhmitettyLista.add(sitsaaja);
+        porukkaKyseisellaIteraatiolla.add(sitsaaja);
+        joLisatytSitsaajat.add(sitsaaja);
         loytyykoKaverilleAvec(sitsaaja, suosituin, avec);
     }
 
@@ -307,13 +306,15 @@ public class SitsaajienRyhmittaja {
      * @param avec Ryhman suosituimman avec.
      */
     public void loytyykoKaverilleAvec(Sitsaaja sitsaaja, Sitsaaja suosituin, Sitsaaja avec) {
+        mahdollisetAvecitKaverille=new ArrayList<>();
         if (sitsaaja.getAvec() == null) {
             kaverilleMahdollisetAvecitPisteyttamattomista(sitsaaja, false);
             kaverilleMahdollisetAvecitPisteytetyista(sitsaaja, false);
             asetaMahdollisetAvecit(sitsaaja, suosituin, avec, false);
-            this.mahdollisetAvecit.clear();
+            mahdollisetAvecitKaverille=new ArrayList<>();
         } else {
-            ryhmitettyLista.add(sitsaaja.getAvec());
+            porukkaKyseisellaIteraatiolla.add(sitsaaja.getAvec());
+            joLisatytSitsaajat.add(sitsaaja.getAvec());
         }
     }
 
@@ -321,12 +322,12 @@ public class SitsaajienRyhmittaja {
      * Asettaa kaverukselle avecin ahdollisten aveccien listaan.
      *
      * @param kaveri Sitsaaja jolle avec haettiin.
-     * @param sitsaaja Sitsaajalle sopiva avec.
+     * @param avec Sitsaajalle sopiva avec.
      */
-    private void asetaKaverijaAvec(Sitsaaja kaveri, Sitsaaja sitsaaja) {
-        kaveri.setAvec(sitsaaja);
-        sitsaaja.setAvec(kaveri);
-        ryhmitettyLista.add(kaveri.getAvec());
+    private void asetaKaverijaAvec(Sitsaaja kaveri, Sitsaaja avec) {
+        asetaAveceiksi(avec, kaveri);
+        porukkaKyseisellaIteraatiolla.add(avec);
+        joLisatytSitsaajat.add(avec);
     }
 
     /**
@@ -341,70 +342,58 @@ public class SitsaajienRyhmittaja {
      * edustajaa.
      */
     private void asetaMahdollisetAvecit(Sitsaaja kaveri, Sitsaaja suosituin, Sitsaaja avec, boolean vikaKierros) {
-        for (Sitsaaja sitsaaja : this.mahdollisetAvecit) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+        for (Sitsaaja kAvec : this.mahdollisetAvecitKaverille) {
+            if(onkoSitsaajaJoPlassattu(kAvec)) continue;
             if (vikaKierros == true) {
-                if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec)) {
-                    asetaKaverijaAvec(kaveri, sitsaaja);
+                if (kAvec.kaverit.contains(suosituin) && kAvec.kaverit.contains(kAvec)) {
+                    asetaKaverijaAvec(kaveri, kAvec);
                     return;
                 }
             }
 
-            if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.kaverit.contains(avec) && sitsaaja.getSukupuoli() != kaveri.getSukupuoli()) {
-                asetaKaverijaAvec(kaveri, sitsaaja);
+            if (kAvec.kaverit.contains(suosituin) && kAvec.kaverit.contains(kAvec) && !ovatkoSitsaajatSamaaSukupuolta(kAvec, kaveri)) {
+                asetaKaverijaAvec(kaveri, kAvec);
                 return;
             }
         }
 
-        for (Sitsaaja sitsaaja : this.mahdollisetAvecit) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+        for (Sitsaaja kAvec : this.mahdollisetAvecitKaverille) {
+            if(onkoSitsaajaJoPlassattu(kAvec)) continue;
             if (vikaKierros == true) {
-                if (sitsaaja.kaverit.contains(suosituin)) {
-                    asetaKaverijaAvec(kaveri, sitsaaja);
+                if (kAvec.kaverit.contains(suosituin)) {
+                    asetaKaverijaAvec(kaveri, kAvec);
                     return;
-
                 }
             }
 
-            if (sitsaaja.kaverit.contains(suosituin) && sitsaaja.getSukupuoli() != kaveri.getSukupuoli()) {
-                asetaKaverijaAvec(kaveri, sitsaaja);
+            if (kAvec.kaverit.contains(suosituin) && !ovatkoSitsaajatSamaaSukupuolta(kAvec, kaveri)) {
+                asetaKaverijaAvec(kaveri, kAvec);
                 return;
-
             }
         }
-        for (Sitsaaja sitsaaja : this.mahdollisetAvecit) {
-            if (ryhmitettyLista.contains(sitsaaja)) {
-                continue;
-            }
+        for (Sitsaaja kAvec : this.mahdollisetAvecitKaverille) {
+            if(onkoSitsaajaJoPlassattu(kAvec)) continue;
             if (vikaKierros == true) {
-                if (sitsaaja.kaverit.contains(avec)) {
-                    asetaKaverijaAvec(kaveri, sitsaaja);
+                if (kAvec.kaverit.contains(kAvec)) {
+                    asetaKaverijaAvec(kaveri, kAvec);
                     return;
-
                 }
             }
 
-            if (sitsaaja.kaverit.contains(avec) && sitsaaja.getSukupuoli() != kaveri.getSukupuoli()) {
-                asetaKaverijaAvec(kaveri, sitsaaja);
+            if (kAvec.kaverit.contains(kAvec) && !ovatkoSitsaajatSamaaSukupuolta(kAvec, kaveri)) {
+                asetaKaverijaAvec(kaveri, kAvec);
                 return;
 
             }
         }
 
-        for (Sitsaaja sitsaaja : this.mahdollisetAvecit) {
-            if (vikaKierros == true && !ryhmitettyLista.contains(sitsaaja)) {
-                asetaKaverijaAvec(kaveri, sitsaaja);
+        for (Sitsaaja kAvec : this.mahdollisetAvecitKaverille) {
+            if (vikaKierros == true && !onkoSitsaajaJoPlassattu(kAvec)) {
+                asetaKaverijaAvec(kaveri, kAvec);
                 return;
             }
-            if (ryhmitettyLista.contains(sitsaaja) || sitsaaja.getSukupuoli() == kaveri.getSukupuoli()) {
-                continue;
-            }
-
-            asetaKaverijaAvec(kaveri, sitsaaja);
+            if (onkoSitsaajaJoPlassattu(kAvec) || ovatkoSitsaajatSamaaSukupuolta(kaveri, kAvec)) continue;
+            asetaKaverijaAvec(kaveri, kAvec);
             return;
         }
 
@@ -416,7 +405,7 @@ public class SitsaajienRyhmittaja {
     private void kaverilleMahdollisetAvecitPisteytetyista(Sitsaaja sitsaaja, boolean onkoSukupuoliVaihdettu) {
         List<Sitsaaja> tmp = sitsaajatPisteytettyna;
         for (int i = 0; i < tmp.size(); i++) {
-            if (tmp.get(i) == null || ryhmitettyLista.contains(tmp.get(i)) || tmp.get(i).getSukupuoli() == sitsaaja.getSukupuoli() || tmp.get(i).getAvec() != null) {
+            if (tmp.get(i) == null || onkoSitsaajaJoPlassattu(tmp.get(i)) || ovatkoSitsaajatSamaaSukupuolta(sitsaaja, tmp.get(i)) || tmp.get(i).getAvec() != null) {
                 if (i == tmp.size() - 1 && onkoSukupuoliVaihdettu == false) {
                     sitsaaja.vaihdaSukupuolta();
                     kaverilleMahdollisetAvecitPisteytetyista(sitsaaja, true);
@@ -426,7 +415,7 @@ public class SitsaajienRyhmittaja {
             }
 
             Sitsaaja mahdollinenAvec = tmp.get(i);
-            mahdollisetAvecit.add(mahdollinenAvec);
+            mahdollisetAvecitKaverille.add(mahdollinenAvec);
         }
         if (onkoSukupuoliVaihdettu == true) {
             sitsaaja.vaihdaSukupuolta();
@@ -437,7 +426,7 @@ public class SitsaajienRyhmittaja {
         List<Sitsaaja> tmp = sitsaajatIlmanpisteita;
 
         for (int i = 0; i < tmp.size(); i++) {
-            if (tmp.get(i) == null || ryhmitettyLista.contains(tmp.get(i)) || tmp.get(i).getSukupuoli() == sitsaaja.getSukupuoli() || tmp.get(i).getAvec() != null) {
+            if (tmp.get(i) == null || onkoSitsaajaJoPlassattu(tmp.get(i)) || ovatkoSitsaajatSamaaSukupuolta(sitsaaja, tmp.get(i)) || tmp.get(i).getAvec() != null) {
                 if (i == tmp.size() - 1 && onkoSukupuoliVaihdettu == false) {
                     sitsaaja.vaihdaSukupuolta();
                     kaverilleMahdollisetAvecitPisteyttamattomista(sitsaaja, true);
@@ -447,15 +436,19 @@ public class SitsaajienRyhmittaja {
             }
 
             Sitsaaja mahdollinenAvec = tmp.get(i);
-            mahdollisetAvecit.add(mahdollinenAvec);
+            mahdollisetAvecitKaverille.add(mahdollinenAvec);
         }
         if (onkoSukupuoliVaihdettu == true) {
             sitsaaja.vaihdaSukupuolta();
         }
     }
 
-    public List<Sitsaaja> getRyhmitettyLista() {
-        return this.ryhmitettyLista;
+    public List<Sitsaaja> getJoLisatytSitsaajat() {
+        return this.joLisatytSitsaajat;
+    }
+    
+    public List<List<Sitsaaja>> getKaveriporukat(){
+        return this.kaveriporukat;
     }
 
     public List<Sitsaaja> getSitsaajatIlmanKaveriporukkaa() {
@@ -464,7 +457,7 @@ public class SitsaajienRyhmittaja {
            return tmp;
         }
         for (Sitsaaja a : this.sitsaajatIlmanpisteita) {
-            if (this.ryhmitettyLista.contains(a)) {
+            if (onkoSitsaajaJoPlassattu(a)) {
                 continue;
             }
             tmp.add(a);
@@ -472,13 +465,14 @@ public class SitsaajienRyhmittaja {
         return tmp;
     }
 
-    public List<Integer> getKaveririporukoidenPaikatListassa() {
+    protected List<Integer> getKaveririporukoidenPaikatListassaTestejaVarten() {
         return this.kaveriporukoidenPaikatRyhmitetyssaListassa;
     }
 
     private void SetListat() {
         this.sitsaajatPisteytettyna = pisteyttaja.getPisteytettyLista();
         this.sitsaajatIlmanpisteita = pisteyttaja.getSitsaajatJoillaEiOlePisteita();
+        poydanKoko=sitsaajatIlmanpisteita.size()+sitsaajatPisteytettyna.size();
     }
 
     private List<Sitsaaja> leikkaus(Sitsaaja sitsaaja1, Sitsaaja sitsaaja2) {
@@ -492,9 +486,18 @@ public class SitsaajienRyhmittaja {
         Collections.sort(list);
         return list;
     }
+    
+    public int getPoydanKoko(){
+        return this.poydanKoko;
+    }
 
-    public void merkkaaKaveriporukanPaikkaRyhmitettyynListaan(Sitsaaja avec) {
-        int paikka = this.ryhmitettyLista.indexOf(avec);
+    private void merkkaaKaveriporukanPaikkaRyhmitettyynListaan(Sitsaaja avec) {
+        int paikka = this.joLisatytSitsaajat.indexOf(avec);
         this.kaveriporukoidenPaikatRyhmitetyssaListassa.add(paikka);
+    }
+    
+    private void laitaMerkkiTestaustaVarten(){
+        Sitsaaja viimeinenRyhmassa = this.joLisatytSitsaajat.get(joLisatytSitsaajat.size() - 1);
+        merkkaaKaveriporukanPaikkaRyhmitettyynListaan(viimeinenRyhmassa);
     }
 }

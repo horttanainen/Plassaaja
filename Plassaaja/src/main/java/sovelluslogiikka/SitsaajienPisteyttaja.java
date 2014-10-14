@@ -18,14 +18,26 @@ import sovelluslogiikka.sitsaajat.Sitsaaja;
  */
 
 public class SitsaajienPisteyttaja{
+    /**
+     * Lista sitseille ilmoitetusita sitsaajista.
+     */
     private List<Sitsaaja> sitsaajat;
+    /**
+     * Sitsaajat jotka kerösivät pisteitä päätyvät tänne.
+     */
     private List<Sitsaaja> sitsaajatPisteytettyna;
+    /**
+     * Sitsaajat jotka eivät saaneet toimeita sijaitsevat tässä listassa.
+     */
     private List<Sitsaaja> sitsaajatJoillaEiPisteita;
+    /**
+     * SitsiIlmon ilmentymä josta sitseille ilmoitetut sitsaajat haetaan.
+     */
     private SitsiIlmo ilmo;
     /**
      * Luo sitsaajienpisteyttäjän ja asettaa tälle SitsiIlmon ilmentymän, josta
      * pisteyttaja hakee pisteytettavat sitsaajat.
-     * @param ilmo 
+     * @param ilmo SitsiIlmo olio
      */
     public SitsaajienPisteyttaja(SitsiIlmo ilmo){
         this.ilmo=ilmo;
@@ -56,16 +68,12 @@ public class SitsaajienPisteyttaja{
         }
     }
     
-    //setterit
-    
     /**
      * Asettaa sitsaajaListan pisteytaSitsaajat() kutsun yhteydessä.
      */
     protected void setSitsaajaLista(){
         this.sitsaajat=ilmo.getSitsaajat();
     }
-    
-    //getterit
     
     /**
      * Palauttaa Sitsaajat joilla on jonkinlainen pisteytys järjestettynä
@@ -96,9 +104,7 @@ public class SitsaajienPisteyttaja{
                 loytyi++;
             }
         }
-//        if(a.getAvec()!=null) loytyi++;
         a.setSuosio(loytyi);
-        
     }
     /**
      * Tämä tarkastaa löytyykö sitsaajan A kaveritoivesta sitsaaja B.

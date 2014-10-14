@@ -61,3 +61,7 @@ Edelleen.
 Ma 13.10 8 tuntia
 
 Tein luokan uudestaan. Ei toimi.
+
+Ti 14.10 8 tuntia
+
+Plassaaja plassaa sittenkin. Minä kun ehdin jo vaipua epätoivoon.

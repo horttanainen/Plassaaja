@@ -34,13 +34,20 @@ public class SitsaajienManagerointi {
      */
     public SitsaajienRyhmittaja sitsaajienRyhmittaja;
     /**
-     * Plassaa sitsaajat pöytään käyttäen hyväkseen pisteyttäjän atribuutteja.
+     * Plassaa sitsaajat pöytään käyttäen hyväkseen ryhmittajan luomia
+     * kaveriporukoita.
      */
     public Plassaaja plassaaja;
-    
+    /**
+     * Poyta. Sisaltaa Arraylistin, johon sitsaajat sijoitetaan.
+     */
     public Poyta poyta;
     
-    
+    /**
+     * Luo SitsaajienManagerointiolion. Manageri sisältää kaikki sitsaajien plassaukseen
+     * tarvittavat työkalut. Konstruktorin kutsun yhteydessä manageri syöttää
+     * kaikille "työkalu" attribuuteille niiden tarvitsemat tiedot.
+     */
     public SitsaajienManagerointi(){
         this.ilmo=new SitsiIlmo();
         this.poyta=new Poyta();

@@ -80,6 +80,11 @@ public class SitsaajaTest {
     }
     
     @Test
+    public void equals(){
+        assertFalse(henkilo.equals(henkilo2));
+    }
+    
+    @Test
     public void compareToJarjestaaSitsaajatOikeinSuosionPerusteella(){
         henkilo2= new Sitsaaja("Vilma Sutela", "Matti Meikalainen");
         henkilo3= new Sitsaaja("Kippari Kalle", "Vilma Sutela");

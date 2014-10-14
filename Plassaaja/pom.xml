@@ -47,7 +47,6 @@
             <param>sovelluslogiikka.*</param>
         </targetClasses>
         <targetTests>
-
             <param>sovelluslogiikka*</param>
         </targetTests>
     </configuration>

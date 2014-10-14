@@ -39,18 +39,6 @@ public class PoytaTest {
         assertEquals(lista, poyta.getPoyta());
     }
     
-    @Test
-    public void pydanAlustusTekeeOikeankokoisen(){
-        poyta.alustaPoyta(10);
-        assertTrue(poyta.getPoyta().size()==10);
-    }
     
-    @Test
-    public void pydanAlustusTayttaaSenNULLoloilla(){
-        poyta.alustaPoyta(10);
-        for (Sitsaaja sitsaaja : poyta.getPoyta()) {
-            assertTrue(sitsaaja==null);
-        }
-    }
     
 }

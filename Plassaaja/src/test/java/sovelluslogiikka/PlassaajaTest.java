@@ -152,10 +152,6 @@ public class PlassaajaTest {
         henkilo30 = new Sitsaaja("AF", null);
         henkilo31 = new Sitsaaja("AG", null);
         henkilo32 = new Sitsaaja("AH", null);
-        henkilo33 = new Sitsaaja("AI", null);
-        henkilo34 = new Sitsaaja("AK", null);
-        henkilo35 = new Sitsaaja("AL", null);
-        henkilo36 = new Sitsaaja("AM", null);
         henkilo25.setSukupuoli(Sukupuoli.Mies);
         henkilo26.setSukupuoli(Sukupuoli.Mies);
         henkilo27.setSukupuoli(Sukupuoli.Mies);
@@ -164,18 +160,14 @@ public class PlassaajaTest {
         henkilo30.setSukupuoli(Sukupuoli.Mies);
         henkilo31.setSukupuoli(Sukupuoli.Nainen);
         henkilo32.setSukupuoli(Sukupuoli.Nainen);
-        henkilo33.setSukupuoli(Sukupuoli.Nainen);
-        henkilo34.setSukupuoli(Sukupuoli.Nainen);
-        henkilo35.setSukupuoli(Sukupuoli.Nainen);
-        henkilo36.setSukupuoli(Sukupuoli.Nainen);
-        manageri.ilmo.lisaaSitsaaja(henkilo1, henkilo2, henkilo3, henkilo4, henkilo5, henkilo6, henkilo7, henkilo8, henkilo9, henkilo10, henkilo11, henkilo12, henkilo13, henkilo14, henkilo15, henkilo16, henkilo17, henkilo18, henkilo19, henkilo20, henkilo21, henkilo22, henkilo23, henkilo24, henkilo25, henkilo26, henkilo27, henkilo28, henkilo29, henkilo30, henkilo31, henkilo32, henkilo33, henkilo34, henkilo35, henkilo36);
+        manageri.ilmo.lisaaSitsaaja(henkilo1, henkilo2, henkilo3, henkilo4, henkilo5, henkilo6, henkilo7, henkilo8, henkilo9, henkilo10, henkilo11, henkilo12, henkilo13, henkilo14, henkilo15, henkilo16, henkilo17, henkilo18, henkilo19, henkilo20, henkilo21, henkilo22, henkilo23, henkilo24, henkilo25, henkilo26, henkilo27, henkilo28, henkilo29, henkilo30, henkilo31, henkilo32);
         manageri.aveccienParittaja.plassaaAvecit();
         manageri.kaverienParittaja.paritaKaverit();
         manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
         manageri.plassaaja.plassaa();
         List<Sitsaaja> poyta = manageri.poyta.getPoyta();
-        assertEquals(36, poyta.size());
+        assertEquals(32, poyta.size());
 
     }
     
@@ -220,6 +212,7 @@ public class PlassaajaTest {
         assertTrue(poyta.get(2).getSukupuoli()==Sukupuoli.Mies);
         assertTrue(poyta.get(5).getSukupuoli()==Sukupuoli.Mies);
         assertTrue(poyta.get(6).getSukupuoli()==Sukupuoli.Mies);
+        assertFalse(poyta.get(poyta.size()-2).getSukupuoli()==Sukupuoli.Nainen);
         
     }
     
@@ -272,16 +265,8 @@ public class PlassaajaTest {
         manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
         manageri.plassaaja.setListat();
-        int sitsaajienMaara=manageri.plassaaja.sitsaajatIlmanRyhmaa.size()+manageri.plassaaja.sitsaajatryhmissa.size();
-        Set<Sitsaaja> joukko =new HashSet<>();
-        for(Sitsaaja sitsaaja:manageri.plassaaja.sitsaajatIlmanRyhmaa){
-            joukko.add(sitsaaja);
-        }
-        for(Sitsaaja sitsaaja:manageri.plassaaja.sitsaajatryhmissa){
-            joukko.add(sitsaaja);
-        }
-        assertEquals(36, joukko.size());
-        assertEquals(36, sitsaajienMaara);
+        assertEquals(36, manageri.sitsaajienRyhmittaja.getPoydanKoko());
+
     }
 
     @Test
@@ -310,33 +295,54 @@ public class PlassaajaTest {
         henkilo34.setSukupuoli(Sukupuoli.Nainen);
         henkilo35.setSukupuoli(Sukupuoli.Nainen);
         henkilo36.setSukupuoli(Sukupuoli.Nainen);
-
         manageri.ilmo.lisaaSitsaaja(henkilo1, henkilo2, henkilo3, henkilo4, henkilo5, henkilo6, henkilo7, henkilo8, henkilo9, henkilo10, henkilo11, henkilo12, henkilo13, henkilo14, henkilo15, henkilo16, henkilo17, henkilo18, henkilo19, henkilo20, henkilo21, henkilo22, henkilo23, henkilo24, henkilo25, henkilo26, henkilo27, henkilo28, henkilo29, henkilo30, henkilo31, henkilo32, henkilo33, henkilo34, henkilo35, henkilo36);
         manageri.aveccienParittaja.plassaaAvecit();
         manageri.kaverienParittaja.paritaKaverit();
         manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
-        henkilo20.setSuosio(100);
-        henkilo4.setSuosio(95);
-        henkilo1.setSuosio(90);
-        henkilo3.setSuosio(85);
-        henkilo2.setSuosio(80);
-        henkilo7.setSuosio(75);
-        henkilo11.setSuosio(70);
-        henkilo15.setSuosio(65);
-        henkilo21.setSuosio(60);
-        henkilo22.setSuosio(55);
-        henkilo9.setSuosio(50);
-        henkilo17.setSuosio(45);
-        henkilo18.setSuosio(40);
-        henkilo6.setSuosio(35);
-        henkilo8.setSuosio(30);
-        henkilo12.setSuosio(25);
-        henkilo14.setSuosio(20);
-        henkilo16.setSuosio(18);
-        henkilo19.setSuosio(16);
-        henkilo23.setSuosio(14);
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
         manageri.plassaaja.plassaa();
 
+        List<String> nimet=new ArrayList<>();
+        nimet.add("S");
+        nimet.add("A");
+        nimet.add("E");
+        nimet.add("B");
+        nimet.add("D");
+        nimet.add("K");
+        nimet.add("C");
+        nimet.add("U");
+        nimet.add("H");
+        nimet.add("I");
+        nimet.add("G");
+        nimet.add("F");
+        nimet.add("Y");
+        nimet.add("J");
+        nimet.add("O");
+        nimet.add("V");
+        nimet.add("T");
+        nimet.add("AF");
+        nimet.add("AA");
+        nimet.add("AE");
+        nimet.add("X");
+        nimet.add("P");
+        nimet.add("Q");
+        nimet.add("R");
+        nimet.add("AG");
+        nimet.add("AB");
+        nimet.add("L");
+        nimet.add("AH");
+        nimet.add("AI");
+        nimet.add("AC");
+        nimet.add("M");
+        nimet.add("AK");
+        nimet.add("AL");
+        nimet.add("AD");
+        nimet.add("N");
+        nimet.add("AM");
+        int i=0;
+        for(String nimi:nimet){
+            assertEquals(nimi, manageri.poyta.getPoyta().get(i).toString());
+            i++;
+        }
     }
 }

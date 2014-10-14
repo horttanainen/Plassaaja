@@ -1,6 +1,6 @@
 Aihe: Sitsiplassaaja. Plassaaja plassaa käyttäjän syöttämät henkilöt avec- ja kaveritoiveiden mukaisesti yhteen pöytään.
 
-Plassaaja tulostaa lopuksi tiedoston, jossa sitsaajat istuvat paikallaan.
+Plassaaja tulostaa lopuksi taulukon, jossa sitsaajat istuvat paikallaan.
 
 Käyttäjät: Emännät ja mahdollisesti myöhemmin toteutettava yhteensopiva Sitsi-ilmo.
 

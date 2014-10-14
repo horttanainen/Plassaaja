@@ -60,7 +60,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.aveccienParittaja.plassaaAvecit();
         manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        List<Sitsaaja> lista = manageri.sitsaajienRyhmittaja.getRyhmitettyLista();
+        List<Sitsaaja> lista = manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat();
         assertEquals(henkilo2, lista.get(0));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo2,henkilo1));
     }
@@ -88,7 +88,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        List<Sitsaaja> sitsaajatRyhmassa=manageri.sitsaajienRyhmittaja.getRyhmitettyLista();
+        List<Sitsaaja> sitsaajatRyhmassa=manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat();
         List<Sitsaaja> sitsajatilmanRyhmaa=manageri.sitsaajienRyhmittaja.getSitsaajatIlmanKaveriporukkaa();
         assertTrue(sitsaajatRyhmassa.contains(henkilo1));
         assertTrue(sitsaajatRyhmassa.contains(henkilo2));
@@ -135,7 +135,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        List<Integer> ryhmienPaikat=manageri.sitsaajienRyhmittaja.getKaveririporukoidenPaikatListassa();
+        List<Integer> ryhmienPaikat=manageri.sitsaajienRyhmittaja.getKaveririporukoidenPaikatListassaTestejaVarten();
         assertTrue(ryhmienPaikat.get(0)==3);
         assertTrue(ryhmienPaikat.get(1)==7); 
     }
@@ -165,7 +165,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.aveccienParittaja.plassaaAvecit();
         manageri.sitsaajienPisteyttaja.pisteytaSitsaajat();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        List<Sitsaaja> lista = manageri.sitsaajienRyhmittaja.getRyhmitettyLista();
+        List<Sitsaaja> lista = manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat();
         assertEquals(henkilo1, lista.get(1));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo1,henkilo2));
     }
@@ -191,7 +191,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        List<Sitsaaja> lista = manageri.sitsaajienRyhmittaja.getRyhmitettyLista();
+        List<Sitsaaja> lista = manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat();
         assertEquals(henkilo3, lista.get(1));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo3, henkilo1));
     }
@@ -224,7 +224,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo3,henkilo5));
     }
 
@@ -256,7 +256,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo4, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo4, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo4,henkilo5));
     }
 
@@ -288,7 +288,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo6,henkilo5));
 
     }
@@ -321,7 +321,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo4, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo4, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo4,henkilo5));
     }
     
@@ -353,7 +353,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo3,henkilo5));
     }
     
@@ -385,9 +385,9 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo5, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo5, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo2,henkilo1));
-        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo6,henkilo5));
+        assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo4,henkilo5));
     }
     
     @Test
@@ -417,7 +417,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo6,henkilo5));
     }
     @Test
@@ -445,7 +445,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo4, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo4, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
     }
     
     @Test
@@ -473,7 +473,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo5,henkilo6));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo1, henkilo2));
     }
@@ -503,7 +503,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo5, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo5, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo3,henkilo5));
     }
     
@@ -531,7 +531,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo5, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo5, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo4,henkilo5));
     }
     @Test
@@ -559,7 +559,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
         assertTrue(manageri.aveccienParittaja.ovatkoAvecit(henkilo3,henkilo4));
     }
   
@@ -588,7 +588,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo6, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
 
     }
     
@@ -616,7 +616,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
     }
     
     @Test
@@ -643,7 +643,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
     }
     @Test
     public void kolmanneksiSeuraavaksiSuosiotonJokaEitykannytKummastakaan(){
@@ -667,7 +667,7 @@ public class SitsaajienRyhmittajaTest {
         manageri.sitsaajienPisteyttaja.setSitsaajaLista();
         manageri.sitsaajienPisteyttaja.jaaSitsaajatJoukkoihin();
         manageri.sitsaajienRyhmittaja.ryhmitaSitsaajat();
-        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getRyhmitettyLista().get(2));
+        assertEquals(henkilo3, manageri.sitsaajienRyhmittaja.getJoLisatytSitsaajat().get(2));
     }
     
     

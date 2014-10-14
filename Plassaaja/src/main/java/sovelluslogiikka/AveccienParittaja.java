@@ -17,7 +17,10 @@ import java.util.*;
 public class AveccienParittaja {
     private SitsiIlmo ilmo;
     private List<Sitsaaja> sitsaajat;
-    
+    /**
+     * Luo Aveccienparittajan ja liittää tähän SitsiIlmo-olion.
+     * @param ilmo SitsiIlmo josta Aveccienparittaja hakee sitsaajat.
+     */
     public AveccienParittaja(SitsiIlmo ilmo){
         this.ilmo=ilmo;
     }
@@ -36,14 +39,14 @@ public class AveccienParittaja {
     public void plassaaAvecit(){
         setSitsaajaLista();
         for(Sitsaaja a: sitsaajat){
-            plassaaAlleAvec(a);
+            plassaaSitsaajalleAvec(a);
         }
     }
     /**
      * Plassaa yksittäiselle Sitsaajalle A avecin, jos avec on myös toivonut A:ta
      * @param a Sitsaaja A
      */
-    protected void plassaaAlleAvec(Sitsaaja a){
+    protected void plassaaSitsaajalleAvec(Sitsaaja a){
         for(Sitsaaja b: sitsaajat){
                 if(loytyykoAnAvecToiveistaB(a, b)){
                     if(loytyykoAnAvecToiveistaB(b, a)){

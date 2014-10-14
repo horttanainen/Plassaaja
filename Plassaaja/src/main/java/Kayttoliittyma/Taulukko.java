@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 import sovelluslogiikka.sitsaajat.Sitsaaja;
 import java.util.*;
+import javax.swing.JScrollPane;
+import javax.swing.table.TableColumn;
 import sovelluslogiikka.Poyta;
 
 /**
@@ -18,25 +20,33 @@ import sovelluslogiikka.Poyta;
  * @author Santeri
  */
 public class Taulukko extends JFrame {
-    
+
     JTable taulukko;
     private List<Sitsaaja> sitsaajat;
-    
-    public Taulukko(Poyta poyta){
+
+    public Taulukko(Poyta poyta) {
         setLayout(new FlowLayout());
-        this.sitsaajat=poyta.getPoyta();
-        String[] sarakkeidenNimet=new String[(sitsaajat.size()/2)];
-        int i=0;
-        String[][] data=new String[50][50];
-        for (int j = 0; j < sitsaajat.size()-1;j+=2) {
-            sarakkeidenNimet[i]="Paikat:"+i+ " ja "+i+1;
-            data[i][i]=sitsaajat.get(j).toString();
-            data[i][i+1]=sitsaajat.get(j+1).toString();
-            i+=2;
+        this.sitsaajat = poyta.getPoyta();
+        Iterator<Sitsaaja> iteraattori=sitsaajat.iterator();
+        int cols = sitsaajat.size() / 2;
+        String[] sarakkeidenNimet = new String[cols];
+        int rows = 2;
+        int nimet=0;
+        String[][] data = new String[rows][cols];
+        for (int i = 0; i < cols; i++) {
+            sarakkeidenNimet[i]="Sitsaajat "+nimet+" ja "+(nimet+1);
+            nimet+=2;
+            for (int j = 0; j < rows; j++) {
+                String sitsaajanNimi=iteraattori.next().toString();
+                data[j][i] = sitsaajanNimi;
+            }
         }
-         taulukko=new JTable(data, sarakkeidenNimet);
-         taulukko.setPreferredScrollableViewportSize(new Dimension(100,1000));
-         taulukko.setFillsViewportHeight(true);
+        
+        taulukko = new JTable(data, sarakkeidenNimet);
+        taulukko.setPreferredScrollableViewportSize(new Dimension(900, 100));
+        taulukko.setFillsViewportHeight(true);
+        JScrollPane scrollpane = new JScrollPane(taulukko);
+        add(scrollpane);
     }
-    
+
 }
