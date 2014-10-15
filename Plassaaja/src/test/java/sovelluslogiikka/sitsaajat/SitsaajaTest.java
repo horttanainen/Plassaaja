@@ -60,6 +60,44 @@ public class SitsaajaTest {
     }
     
     @Test
+    public void aveccitoiveentyhjennysTyhjentaaAvecciToiveen(){
+        henkilo.poistaAvectoive();
+        assertTrue(henkilo.getAvecToive()==null);
+    }
+    
+    @Test
+    public void avecciToiveenvaihtoToimiiOikein(){
+        henkilo.vaihdaAvectoivetta("Sanna");
+        assertEquals("Sanna", henkilo.getAvecToive());
+    }
+    
+    @Test
+    public void poistaKaveritoiveetOnnistuneesti(){
+        henkilo.setKaveriToive("sami","salla","santeri");
+        henkilo.tyhjennaKaveritoiveet();
+        assertTrue(henkilo.kaveriToiveet.isEmpty());
+    }
+    
+    @Test
+    public void poistaYksittainenKaveritoiveOnnistuneesti(){
+        henkilo.setKaveriToive("sami","salla","santeri");
+        henkilo.poistaKaveritoiveita("sami");
+        List<String> lista = new ArrayList<>();
+        lista.add("salla");
+        lista.add("santeri");
+        assertEquals(lista, henkilo.kaveriToiveet);
+    }
+    
+    @Test
+    public void poistaUseampiKaveritoiveOnnistuneesti(){
+        henkilo.setKaveriToive("sami","salla","santeri");
+        henkilo.poistaKaveritoiveita("sami","santeri");
+        List<String> lista = new ArrayList<>();
+        lista.add("salla");
+        assertEquals(lista, henkilo.kaveriToiveet);
+    }
+    
+    @Test
     public void sukupulenAsetusNaiseksiOnnistuu(){
         henkilo.setSukupuoli(Sukupuoli.Nainen);
         assertEquals(Sukupuoli.Nainen, henkilo.getSukupuoli());
