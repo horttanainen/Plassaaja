@@ -5,6 +5,19 @@
  */
 package sovelluslogiikka;
 
+import sovelluslogiikka.Poyta;
+import sovelluslogiikka.managerinTyokalut.KaverienParittaja;
+import sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttaja;
+import sovelluslogiikka.managerinTyokalut.AveccienParittaja;
+import sovelluslogiikka.managerinTyokalut.AveccienParittaja;
+import sovelluslogiikka.managerinTyokalut.KaverienParittaja;
+import sovelluslogiikka.managerinTyokalut.SitsaajienRyhmittaja;
+import sovelluslogiikka.managerinTyokalut.Plassaaja;
+import sovelluslogiikka.managerinTyokalut.Plassaaja;
+import sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttaja;
+import sovelluslogiikka.managerinTyokalut.SitsaajienRyhmittaja;
+import sovelluslogiikka.managerinTyokalut.SitsiIlmo;
+
 /**
  *SitsaajienManagerointi luo kerralla kaikki sitsaajien käsittelyyn
  *tarvittavat työkalut ja niitä on helppo käyttää managerin kautta.

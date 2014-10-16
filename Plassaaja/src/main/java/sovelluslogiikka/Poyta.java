@@ -6,7 +6,7 @@
 package sovelluslogiikka;
 
 import java.util.*;
-import sovelluslogiikka.SitsiIlmo;
+import sovelluslogiikka.managerinTyokalut.SitsiIlmo;
 import sovelluslogiikka.sitsaajat.Sitsaaja;
 
 /**

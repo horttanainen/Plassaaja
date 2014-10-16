@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sovelluslogiikka;
+package sovelluslogiikka.managerinTyokalut;
 
-import Kayttoliittyma.Taulukko;
+import Kayttoliittyma.GUI.Taulukko;
 import java.util.*;
 import javax.swing.JFrame;
+import sovelluslogiikka.Poyta;
 import sovelluslogiikka.sitsaajat.Sitsaaja;
 import sovelluslogiikka.sitsaajat.Sukupuoli;
 

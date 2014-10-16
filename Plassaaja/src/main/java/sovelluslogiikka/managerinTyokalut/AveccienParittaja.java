@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package sovelluslogiikka;
+package sovelluslogiikka.managerinTyokalut;
 
 import sovelluslogiikka.sitsaajat.Sitsaaja;
 import java.util.*;

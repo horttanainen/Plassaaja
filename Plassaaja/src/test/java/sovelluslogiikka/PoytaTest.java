@@ -15,7 +15,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.w3c.dom.ls.LSInput;
-import sovelluslogiikka.SitsiIlmo;
+import sovelluslogiikka.managerinTyokalut.SitsiIlmo;
 import sovelluslogiikka.sitsaajat.Sitsaaja;
 import sovelluslogiikka.sitsaajat.Sitsaaja;
 

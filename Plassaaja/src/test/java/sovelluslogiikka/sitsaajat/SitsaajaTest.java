@@ -17,7 +17,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import sovelluslogiikka.SitsiIlmo;
+import sovelluslogiikka.managerinTyokalut.SitsiIlmo;
 
 
 /**
@@ -86,6 +86,12 @@ public class SitsaajaTest {
         lista.add("salla");
         lista.add("santeri");
         assertEquals(lista, henkilo.kaveriToiveet);
+    }
+    
+    @Test
+    public void sitsaajanNimenVaihtoOnnistuu(){
+        henkilo.vaihdaNimi("kalle pulu");
+        assertTrue(henkilo.getNimi().equals("kalle pulu"));
     }
     
     @Test

@@ -4,9 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import sovelluslogiikka.sitsaajat.Sitsaaja;
-import sovelluslogiikka.AveccienParittaja;
+import sovelluslogiikka.managerinTyokalut.AveccienParittaja;
 import sovelluslogiikka.SitsaajienManagerointi;
-import sovelluslogiikka.SitsiIlmo;
+import sovelluslogiikka.managerinTyokalut.SitsiIlmo;
 import sovelluslogiikka.sitsaajat.Sukupuoli;
 
 /**

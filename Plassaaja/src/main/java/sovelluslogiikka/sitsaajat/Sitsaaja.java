@@ -92,6 +92,10 @@ public class Sitsaaja implements Comparable<Sitsaaja> {
     public void setAvec(Sitsaaja avec) {
         this.avec = avec;
     }
+    
+    public void vaihdaNimi(String uusiNimi){
+        this.nimi=uusiNimi;
+    }
 
     public void poistaAvectoive() {
         if (this.avecToive != null) {

@@ -5,6 +5,8 @@
  */
 package Kayttoliittyma;
 
+import java.util.*;
+import java.io.File;
 import java.util.Scanner;
 import sovelluslogiikka.SitsaajienManagerointi;
 import sovelluslogiikka.sitsaajat.Sitsaaja;
@@ -21,28 +23,30 @@ public class Kayttoliittyma {
 
     public Kayttoliittyma() {
         this.lukija = new Scanner(System.in);
-
     }
 
     public void run() {
 
-        System.out.println("\n\nk:Kyllä ja x sulkee ohjelman.\n");
-        System.out.print("Tehdaanko uusi plassaus? (k/x): ");
+        System.out.println("\n\nTervetuloa käyttämään sitsiplassaajaa!");
+        System.out.println("1. Uusi plassaus");
+        System.out.println("x. Sulje ohjelma");
+        System.out.print("> ");
         String komento = this.lukija.nextLine();
         switch (komento) {
-            case "k":
+            case "1":
                 uusiPlassaus();
                 menu();
                 break;
             case "x":
                 break;
             default:
-                System.out.println("Vaara komento!");
+                System.out.println("\nVaara komento!");
                 run();
                 break;
         }
 
     }
+
 
     private void uusiPlassaus() {
         manageri = new SitsaajienManagerointi();
@@ -60,6 +64,7 @@ public class Kayttoliittyma {
         switch (komento) {
             case "1":
                 sitsaajienLisaysJaPoisto();
+                menu();
                 break;
             case "2":
                 plassaa();
@@ -67,19 +72,19 @@ public class Kayttoliittyma {
                 break;
             case "3":
                 return;
-
             default:
-                System.out.println("Komentoa ei loydy!");
+                System.out.println("\nKomentoa ei loydy!");
                 menu();
                 break;
 
         }
     }
 
+
     private void plassaa() {
         int sitsaajienMaara = manageri.ilmo.getSitsaajat().size();
         if (sitsaajienMaara % 4 != 0) {
-            System.out.println("Sitsaajien maaran on oltava jaollinen neljalla!"
+            System.out.println("\nSitsaajien maaran on oltava jaollinen neljalla!"
                     + "Lisaa tai poista sitsaajia.");
             return;
         } else {
@@ -125,7 +130,7 @@ public class Kayttoliittyma {
                 return;
 
             default:
-                System.out.println("Komentoa ei loydy!");
+                System.out.println("\nKomentoa ei loydy!");
                 sitsaajienLisaysJaPoisto();
                 break;
 
@@ -154,7 +159,7 @@ public class Kayttoliittyma {
                 return;
 
             default:
-                System.out.println("Komentoa ei loydy!");
+                System.out.println("\nKomentoa ei loydy!");
                 muokkaaSitsaajia();
                 break;
 
@@ -162,7 +167,7 @@ public class Kayttoliittyma {
     }
 
     private void poistaSitsaajia() {
-        System.out.println("\n\nPOISTA SITSAAJA");
+        System.out.println("\nPOISTA SITSAAJA");
         System.out.println("1. Poista sitsaaja");
         System.out.println("2. Näytä sitsaajat");
         System.out.println("3. Palaa takaisin");
@@ -183,7 +188,7 @@ public class Kayttoliittyma {
                 return;
 
             default:
-                System.out.println("Komentoa ei loydy!");
+                System.out.println("\nKomentoa ei loydy!");
                 poistaSitsaajia();
                 break;
 
@@ -198,47 +203,71 @@ public class Kayttoliittyma {
         muokkaaSitsaajaa(sitsaaja);
 
     }
-    
-    private void muokkaaSitsaajaa(Sitsaaja sitsaaja){
-        System.out.println("\n\nMUOKKAUS VAIHTOEHDOT");
-            System.out.println("1. Lisää, poista tai vaihda avectoive");
-            System.out.println("2. Lisää, poista tai vaihda kaveritoiveita");
-            System.out.println("3. Muuta nimeä");
-            System.out.println("4. Vaihda sukupuolta");
-            System.out.println("5. Muokkaa toisen sitsaajan tietoja");
-            System.out.println("6. Palaa takaisin\n");
-            System.out.println("Muokattava sitsaaja:\n");
-            System.out.print(sitsaaja.toString() + ". Sukupuoli: " + sitsaaja.getSukupuoli().toString() + ". Avectoive: " + sitsaaja.getAvecToive() + ". Kaveritoiveet: ");
-            for (String nimi : sitsaaja.getKaveriToive()) {
-                System.out.print(nimi + ", ");
-            }
-            System.out.println("");
-            System.out.println("\n> ");
+
+    private void muokkaaSitsaajaa(Sitsaaja sitsaaja) {
+        System.out.println("\nMUOKKAUS VAIHTOEHDOT");
+        System.out.println("1. Lisää, poista tai vaihda avectoive");
+        System.out.println("2. Lisää, poista tai vaihda kaveritoiveita");
+        System.out.println("3. Muuta nimeä");
+        System.out.println("4. Vaihda sukupuolta");
+        System.out.println("5. Muokkaa toisen sitsaajan tietoja");
+        System.out.println("6. Palaa takaisin\n");
+        System.out.println("Muokattava sitsaaja:\n");
+        System.out.print(sitsaaja.toString() + ". Sukupuoli: " + sitsaaja.getSukupuoli().toString() + ". Avectoive: " + sitsaaja.getAvecToive() + ". Kaveritoiveet: ");
+        for (String nimi : sitsaaja.getKaveriToive()) {
+            System.out.print(nimi + ", ");
+        }
+        System.out.println("");
+        System.out.print("\n> ");
+        String komento = lukija.nextLine();
+        switch (komento) {
+            case "1":
+                muokkaaAvecToiveita(sitsaaja);
+                muokkaaSitsaajaa(sitsaaja);
+                break;
+            case "2":
+                muokkaaKaveriToiveita(sitsaaja);
+                muokkaaSitsaajaa(sitsaaja);
+                break;
+            case "3":
+                muutaNimea(sitsaaja);
+                muokkaaSitsaajaa(sitsaaja);
+                break;
+            case "4":
+                sitsaaja.vaihdaSukupuolta();
+                muokkaaSitsaajaa(sitsaaja);
+                break;
+            case "5":
+                muokkaaSitsaajaaSitsaajanLisays();
+                break;
+            case "6":
+                return;
+            default:
+                System.out.println("\nVäärä komento!");
+                muokkaaSitsaajaa(sitsaaja);
+                break;
+
+        }
+    }
+
+    private void muutaNimea(Sitsaaja sitsaaja) {
+        while (true) {
+            System.out.println("\nMuokattava sitsaaja: \n");
+            System.out.println(sitsaaja.toString());
+            System.out.println("\nMUOKKAA NIMEÄ");
+            System.out.println("x. Palaa takaisin");
+            System.out.print("\n> ");
             String komento = lukija.nextLine();
-            switch (komento) {
-                case "1":
-                    muokkaaAvecToiveita(sitsaaja);
-                    muokkaaSitsaajaa(sitsaaja);
-                    break;
-                case "2":
-                    muokkaaKaveriToiveita(sitsaaja);
-                    muokkaaSitsaajaa(sitsaaja);
-                    break;
-                case "3":
-
-                case "4":
-
-                case "5":
-                    muokkaaSitsaajaaSitsaajanLisays();
-                    break;
-                case "6":
-                    return;
-                default:
-                    System.out.println("Väärä komento!");
-                    muokkaaSitsaajaa(sitsaaja);
-                    break;
-
+            Sitsaaja toinen = new Sitsaaja(komento, null);
+            if (komento.equals("x")) {
+                return;
+            } else if (manageri.ilmo.getSitsaajat().contains(toinen)) {
+                System.out.println("\nSitseillä on jo " + komento + " niminen sitsaaja!");
+            } else {
+                sitsaaja.vaihdaNimi(komento);
             }
+        }
+
     }
 
     private void muokkaaKaveriToiveita(Sitsaaja sitsaaja) {
@@ -249,22 +278,70 @@ public class Kayttoliittyma {
                 System.out.print(nimi + ", ");
             }
             System.out.println("");
-            System.out.println("\n1. Lisää kaveritoiveita");
+            System.out.println("\nMUOKKAA KAVERITOIVEITA");
+            System.out.println("1. Lisää kaveritoiveita");
             System.out.println("2. Poista kaveritoive");
             System.out.println("3. Tyhjennä kaveritoiveet");
             System.out.println("4. Palaa takaisin");
-            System.out.println("> ");
+            System.out.print("\n> ");
             String komento = lukija.nextLine();
             if (komento.equals("4")) {
                 return;
             } else if (komento.equals("2")) {
-                
+                poistaKaveritoiveita(sitsaaja);
+                muokkaaKaveriToiveita(sitsaaja);
+                break;
             } else if (komento.equals("1")) {
-                
+                lisaaKaveritoiveita(sitsaaja);
+                muokkaaKaveriToiveita(sitsaaja);
+                break;
             } else if (komento.equals("3")) {
-                
-            } else{
-                System.out.println("Väärä komento!");
+                sitsaaja.tyhjennaKaveritoiveet();
+                muokkaaKaveriToiveita(sitsaaja);
+                break;
+            } else {
+                System.out.println("\nVäärä komento!");
+            }
+        }
+
+    }
+
+    private void lisaaKaveritoiveita(Sitsaaja sitsaaja) {
+        while (true) {
+            System.out.println("\nMuokattava sitsaaja: \n");
+            System.out.print(sitsaaja.toString() + ". Kaveritoiveet: ");
+            for (String nimi : sitsaaja.getKaveriToive()) {
+                System.out.print(nimi + ", ");
+            }
+            System.out.println("\nErottele lisättävät kaveritoiveet pilkulla tai syötä toiveet yksi kerrallaan");
+            System.out.println("x. Palaa takaisin");
+            System.out.print("\n> ");
+            String komento = lukija.nextLine();
+            if (komento.equals("x")) {
+                return;
+            } else {
+                sitsaaja.setKaveriToive(komento);
+            }
+        }
+
+    }
+
+    private void poistaKaveritoiveita(Sitsaaja sitsaaja) {
+        while (true) {
+            System.out.println("\nMuokattava sitsaaja: \n");
+            System.out.print(sitsaaja.toString() + ". Kaveritoiveet: ");
+            for (String nimi : sitsaaja.getKaveriToive()) {
+                System.out.print(nimi + ", ");
+            }
+            System.out.println("\nPOISTA KAVERITOIVEITA");
+            System.out.println("Erottele poistettavat toiveet pilkuin tai poista toiveita yksi kerrallaan.");
+            System.out.println("x. Palaa takaisin");
+            System.out.print("\n> ");
+            String komento = lukija.nextLine();
+            if (komento.equals("x")) {
+                return;
+            } else {
+                sitsaaja.poistaKaveritoiveita(komento);
             }
         }
 
@@ -274,10 +351,11 @@ public class Kayttoliittyma {
         while (true) {
             System.out.println("\nMuokattava sitsaaja: \n");
             System.out.println((sitsaaja.toString()) + ", avec: " + sitsaaja.getAvecToive());
-            System.out.println("\n1. Lisää/Korvaa avectoive");
+            System.out.println("\nLISÄÄ JA POISTA AVECTOIVEITA");
+            System.out.println("1. Lisää/Korvaa avectoive");
             System.out.println("2. Poista avectoive");
             System.out.println("3. Palaa takaisin");
-            System.out.println("> ");
+            System.out.print("\n> ");
             String komento = lukija.nextLine();
             if (komento.equals("3")) {
                 return;
@@ -286,7 +364,7 @@ public class Kayttoliittyma {
             } else if (komento.equals("1")) {
                 lisaaTaiKorvaaAvectoive(sitsaaja);
             } else {
-                System.out.println("Väärä komento!");
+                System.out.println("\nVäärä komento!");
             }
         }
 
@@ -296,9 +374,10 @@ public class Kayttoliittyma {
         while (true) {
             System.out.println("\nMuokattava sitsaaja: \n");
             System.out.println((sitsaaja.toString()) + ", avec: " + sitsaaja.getAvecToive());
-            System.out.println("\nJos avecilla on avectoive syöte korvaa edellisen.");
+            System.out.println("\nLISÄÄ TAI KORVAA AVECTOIVE");
+            System.out.println("Jos avecilla on avectoive syöte korvaa edellisen.");
             System.out.println("x. Palaa takaisin");
-            System.out.println("> ");
+            System.out.print("\n> ");
             String uusitoive = lukija.nextLine();
             if (uusitoive.equals("x")) {
                 return;
@@ -309,9 +388,9 @@ public class Kayttoliittyma {
 
     private Sitsaaja etsitaanSitsaaja() {
         while (true) {
-            System.out.println("\n\nSyötä sitsaajan nimi: ");
+            System.out.println("\nSyötä sitsaajan nimi: ");
             System.out.println("x. Palaa takaisin");
-            System.out.print("> ");
+            System.out.print("\n> ");
             String nimi = lukija.nextLine();
             Sitsaaja sitsaaja = new Sitsaaja(nimi, null);
             if (nimi.equals("x")) {
@@ -320,14 +399,14 @@ public class Kayttoliittyma {
                 sitsaaja = manageri.ilmo.getSitsaajat().get(manageri.ilmo.getSitsaajat().indexOf(sitsaaja));
                 return sitsaaja;
             } else {
-                System.out.println("Sitsaajaa " + nimi + " ei löydetty.");
+                System.out.println("\nSitsaajaa " + nimi + " ei löydetty.");
             }
         }
     }
 
     private void naytaSitsaajat() {
         while (true) {
-            System.out.println("Sitseille ilmoitetut sitsaajat:\n\n");
+            System.out.println("\nSitseille ilmoitetut sitsaajat:\n");
             for (Sitsaaja sitsaaja : manageri.ilmo.getSitsaajat()) {
                 System.out.print(sitsaaja.toString() + ". Sukupuoli: " + sitsaaja.getSukupuoli().toString() + ". Avectoive: " + sitsaaja.getAvecToive() + ". Kaveritoiveet: ");
                 for (String nimi : sitsaaja.getKaveriToive()) {
@@ -335,12 +414,13 @@ public class Kayttoliittyma {
                 }
                 System.out.println("");
             }
-            System.out.println("\n\nPalaa takaisin komennolla x");
+            System.out.println("\nPalaa takaisin komennolla x");
+            System.out.print("\n> ");
             String komento = this.lukija.nextLine();
             if (komento.equals("x")) {
                 return;
             } else {
-                System.out.println("Komentoa ei loydy!");
+                System.out.println("\nKomentoa ei loydy!");
             }
         }
 
@@ -348,9 +428,9 @@ public class Kayttoliittyma {
 
     private void poistaSitsaaja() {
         while (true) {
-            System.out.println("\n\nAnna poistettavan sitsaajan nimi:");
+            System.out.println("\nAnna poistettavan sitsaajan nimi:");
             System.out.println("x. Palaa takaisin.");
-            System.out.print("> ");
+            System.out.print("\n> ");
             String komento = this.lukija.nextLine();
             if (komento.equals("x")) {
                 return;
@@ -360,7 +440,7 @@ public class Kayttoliittyma {
                 manageri.ilmo.poistaSitsaaja(sitsaaja);
                 System.out.println(komento + " on poistettu sitseilta onnistuneesti!");
             } else {
-                System.out.println(komento + " ei loytynyt sitseilta!");
+                System.out.println("\n" + komento + " ei loytynyt sitseilta!");
             }
         }
     }
@@ -382,9 +462,9 @@ public class Kayttoliittyma {
 
     private void asetaSitsaajalleKaveritoiveet(Sitsaaja sitsaaja) {
         while (true) {
-            System.out.println("\n\nAnna sitsaajan kaveritoiveet:");
+            System.out.println("\nAnna sitsaajan kaveritoiveet:");
             System.out.println("x. Lopettaa kaveritoiveiden asetuksen.");
-            System.out.print("> ");
+            System.out.print("\n> ");
             String toive = this.lukija.nextLine();
 
             if (toive.equals("x")) {
@@ -399,9 +479,9 @@ public class Kayttoliittyma {
     private String annaSitsaajanAvectoive() {
         String nimi = null;
         while (true) {
-            System.out.println("\n\nAnna avectoive:");
+            System.out.println("\nAnna avectoive:");
             System.out.println("x. Jos sitsaajalla ei avectoivetta.");
-            System.out.print("> ");
+            System.out.print("\n> ");
             String komento = this.lukija.nextLine();
             if (komento.equals("x")) {
                 break;
@@ -416,11 +496,11 @@ public class Kayttoliittyma {
     private String annaSitsaajanNimi() {
         String nimi = null;
         while (true) {
-            System.out.println("\n\nAnna sitsaajan nimi:");
-            System.out.print("> ");
+            System.out.println("\nAnna sitsaajan nimi:");
+            System.out.print("\n> ");
             String komento = this.lukija.nextLine();
             if (komento.isEmpty()) {
-                System.out.println("Nimi ei saa olla tyhja!");
+                System.out.println("\nNimi ei saa olla tyhja!");
             } else {
                 nimi = komento;
                 break;
@@ -431,14 +511,14 @@ public class Kayttoliittyma {
     }
 
     private void asetaSitsaajanSukupuoli(Sitsaaja sitsaja) {
-        System.out.println("Anna sitsaajan sukupuoli:");
-        System.out.println("m: Mies");
-        System.out.println("n: Nainen");
-        System.out.print("> ");
+        System.out.println("\nAnna sitsaajan sukupuoli:");
+        System.out.println("1: Mies");
+        System.out.println("2: Nainen");
+        System.out.print("\n> ");
         String komento = this.lukija.nextLine();
-        if (komento.equals("m")) {
+        if (komento.equals("1")) {
             sitsaja.setSukupuoli(Sukupuoli.Mies);
-        } else if (komento.equals("n")) {
+        } else if (komento.equals("2")) {
             sitsaja.setSukupuoli(Sukupuoli.Nainen);
         } else {
             asetaSitsaajanSukupuoli(sitsaja);
