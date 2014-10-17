@@ -1,2 +1,2 @@
-Luulen että testaukseni rivikattavuus on todllisuudessa noin 90 prosenttia tai enemmän.
+Luulen että testaukseni rivikattavuus on todellisuudessa noin 90 prosenttia tai enemmän.
 Lukuisista yrityksistä huolimatta en saa Pit:iä testaamaan Plassaaja luokkaa, joka on varsin iso luokka. Tästä johtuen pitin mukaan rivikattavuus on naurettavat 60 prosenttia.
