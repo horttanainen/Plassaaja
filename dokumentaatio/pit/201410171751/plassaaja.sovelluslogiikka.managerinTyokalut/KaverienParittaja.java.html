@@ -1,0 +1,984 @@
+<html>
+<head>
+<style type='text/css'>
+html, body, div, span, p, blockquote, pre {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-weight: inherit;
+	font-style: inherit;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: baseline;
+}
+
+body{
+	line-height: 1;
+	color: black;
+	background: white;
+	margin-left: 20px;
+}
+
+.src { 
+border: 1px solid #dddddd;
+padding-top: 10px;
+padding-right: 5px;
+padding-left: 5px;
+}
+
+
+.covered {background-color: #ddffdd}
+.uncovered {background-color: #ffdddd}
+.killed {background-color: #aaffaa}
+.survived {background-color: #ffaaaa}
+.uncertain {background-color: #dde7ef}
+.run_error {background-color: #dde7ef}
+.na {background-color: #eeeeee}
+.timed_out {background-color: #dde7ef}
+.non_viable {background-color: #aaffaa}
+.memory_error {background-color: #dde7ef}
+.not_started {background-color: #dde7ef; color : red}
+.no_coverage {background-color: #ffaaaa}
+
+</style>
+
+</head>
+<body>
+
+
+<h1>KaverienParittaja.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_1'/>
+1
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_1'></a>
+</td>
+<td class=''><pre><span  class=''>/*</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_2'/>
+2
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_2'></a>
+</td>
+<td class=''><pre><span  class=''> * To change this license header, choose License Headers in Project Properties.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_3'/>
+3
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_3'></a>
+</td>
+<td class=''><pre><span  class=''> * To change this template file, choose Tools | Templates</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_4'/>
+4
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_4'></a>
+</td>
+<td class=''><pre><span  class=''> * and open the template in the editor.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_5'/>
+5
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_5'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_6'/>
+6
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_6'></a>
+</td>
+<td class=''><pre><span  class=''>package plassaaja.sovelluslogiikka.managerinTyokalut;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_7'/>
+7
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_7'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_8'/>
+8
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_8'></a>
+</td>
+<td class=''><pre><span  class=''>import plassaaja.sovelluslogiikka.sitsaajat.Sitsaaja;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_9'/>
+9
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_9'></a>
+</td>
+<td class=''><pre><span  class=''>import java.util.*;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_10'/>
+10
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_10'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_11'/>
+11
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_11'></a>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_12'/>
+12
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_12'></a>
+</td>
+<td class=''><pre><span  class=''> *Parittaa Sitsaajaoliollle sitsaajista kaverit mik&#195;&#164;li kaverit l&#195;&#182;ytyv&#195;&#164;t</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_13'/>
+13
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_13'></a>
+</td>
+<td class=''><pre><span  class=''> *ilmoittautuneiden joukosta. Toisin kuin Aveccienparitustilanteessa: </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_14'/>
+14
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_14'></a>
+</td>
+<td class=''><pre><span  class=''> *kaveriksiparittaminen ei tarvitse molempien henkil&#195;&#182;iden toivomusta.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_15'/>
+15
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_15'></a>
+</td>
+<td class=''><pre><span  class=''> * @author Santeri</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_16'/>
+16
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_16'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_17'/>
+17
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_17'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_18'/>
+18
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_18'></a>
+</td>
+<td class=''><pre><span  class=''>public class KaverienParittaja{</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_19'/>
+19
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_19'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_20'/>
+20
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_20'></a>
+</td>
+<td class=''><pre><span  class=''>     * Sitseille ilmoitetut sitsaajat.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_21'/>
+21
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_21'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_22'/>
+22
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_22'></a>
+</td>
+<td class=''><pre><span  class=''>    private List&#60;Sitsaaja&#62; sitsaajat;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_23'/>
+23
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_23'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_24'/>
+24
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_24'></a>
+</td>
+<td class=''><pre><span  class=''>     * Sitsiilmo josta sitseille ilmoitetut sitsaajat haetaan.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_25'/>
+25
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_25'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_26'/>
+26
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_26'></a>
+</td>
+<td class=''><pre><span  class=''>    private SitsiIlmo ilmo;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_27'/>
+27
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_27'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_28'/>
+28
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_28'></a>
+</td>
+<td class=''><pre><span  class=''>     * Luo kaverienparittajan ja liitt&#195;&#164;&#195;&#164; t&#195;&#164;h&#195;&#164;n SitsiIlmo-olion, josta parittaja l&#195;&#182;yt&#195;&#164;&#195;&#164;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_29'/>
+29
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_29'></a>
+</td>
+<td class=''><pre><span  class=''>     * paritettavat sitsaajat.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_30'/>
+30
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_30'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param ilmo SitsiIlmo</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_31'/>
+31
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_31'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_32'/>
+32
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_32'></a>
+</td>
+<td class='covered'><pre><span  class=''>    public KaverienParittaja(SitsiIlmo ilmo){</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_33'/>
+33
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_33'></a>
+</td>
+<td class='covered'><pre><span  class=''>        this.ilmo=ilmo;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_34'/>
+34
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_34'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_35'/>
+35
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_35'></a>
+</td>
+<td class=''><pre><span  class=''>    </span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_36'/>
+36
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_36'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_37'/>
+37
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_37'></a>
+</td>
+<td class=''><pre><span  class=''>     * Asettaa kaverienparittajalle listan sitsaajista paritaKaverit() yhteydess&#195;&#164;</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_38'/>
+38
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_38'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_39'/>
+39
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_39'></a>
+</td>
+<td class=''><pre><span  class=''>    private void setSitsaajaLista(){</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_40'/>
+40
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_40'></a>
+</td>
+<td class='covered'><pre><span  class=''>        this.sitsaajat=ilmo.getSitsaajat();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_41'/>
+41
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_41'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_42'/>
+42
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_42'></a>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_43'/>
+43
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_43'></a>
+</td>
+<td class=''><pre><span  class=''>/**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_44'/>
+44
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_44'></a>
+</td>
+<td class=''><pre><span  class=''> * Parittaa kaikille sitsaajille kaverit kaveripyynt&#195;&#182;j&#195;&#164; noudattaen.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_45'/>
+45
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_45'></a>
+</td>
+<td class=''><pre><span  class=''> */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_46'/>
+46
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_46'></a>
+</td>
+<td class=''><pre><span  class=''>    public void paritaKaverit() {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_47'/>
+47
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_47'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        setSitsaajaLista();</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_48'/>
+48
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_48'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>        for (Sitsaaja sitsaaja : sitsaajat) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_49'/>
+49
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_49'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>            paritaSitsaajalleKaveri(sitsaaja);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_50'/>
+50
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_50'></a>
+</td>
+<td class='covered'><pre><span  class=''>        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_51'/>
+51
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_51'></a>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_52'/>
+52
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_52'></a>
+</td>
+<td class=''><pre><span  class=''>    /**</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_53'/>
+53
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_53'></a>
+</td>
+<td class=''><pre><span  class=''>     * Parittaa yksitt&#195;&#164;iselle sitsaajalle A kaverin.</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_54'/>
+54
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_54'></a>
+</td>
+<td class=''><pre><span  class=''>     * @param a Sitsaaja A</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_55'/>
+55
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_55'></a>
+</td>
+<td class=''><pre><span  class=''>     */</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_56'/>
+56
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_56'></a>
+</td>
+<td class=''><pre><span  class=''>protected void paritaSitsaajalleKaveri(Sitsaaja a){</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_57'/>
+57
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_57'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>    if (a.getKaveriToive() != null) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_58'/>
+58
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_58'>3</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                for (String kaveritoive : a.getKaveriToive()) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_59'/>
+59
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_59'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                    for (Sitsaaja b : sitsaajat) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_60'/>
+60
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_60'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                        if (b.getNimi().equalsIgnoreCase(kaveritoive)) {</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_61'/>
+61
+</td>
+<td class='killed'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_61'>1</a>
+</td>
+<td class='covered'><pre><span  class='killed'>                            a.setKaveri(b);</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_62'/>
+62
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_62'></a>
+</td>
+<td class=''><pre><span  class=''>                        }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_63'/>
+63
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_63'></a>
+</td>
+<td class='covered'><pre><span  class=''>                    }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_64'/>
+64
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_64'></a>
+</td>
+<td class=''><pre><span  class=''>                }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_65'/>
+65
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_65'></a>
+</td>
+<td class=''><pre><span  class=''>            }</span></pre></td></tr>
+
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_66'/>
+66
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_66'></a>
+</td>
+<td class='covered'><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@7c853486_67'/>
+67
+</td>
+<td class=''>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_67'></a>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7c853486_47'>47</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_47'/> 
+
+<p class='KILLED'>removed call to plassaaja/sovelluslogiikka/managerinTyokalut/KaverienParittaja::setSitsaajaLista : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7c853486_48'>48</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_48'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7c853486_49'>49</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_49'/> 
+
+<p class='KILLED'>removed call to plassaaja/sovelluslogiikka/managerinTyokalut/KaverienParittaja::paritaSitsaajalleKaveri : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7c853486_57'>57</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_57'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7c853486_58'>58</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_58'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> <p class='KILLED'>changed conditional boundary : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> <p class='KILLED'>Changed increment from 1 to -1 : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7c853486_59'>59</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_59'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7c853486_60'>60</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_60'/> 
+
+<p class='KILLED'>negated conditional : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> 
+</td>
+</tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@7c853486_61'>61</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@7c853486_61'/> 
+
+<p class='KILLED'>removed call to plassaaja/sovelluslogiikka/sitsaajat/Sitsaaja::setKaveri : KILLED -> plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest)</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+<li class='mutator'>RETURN_VALS_MUTATOR</li>
+
+<li class='mutator'>MATH_MUTATOR</li>
+
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest.onkoJokaToinenMies(plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest) (55 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.kaverinNimiEiOleCaseSensitive(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest) (1 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.josKaveriaEiLoydyNiinKaveriaEiLisata(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest) (8 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienRyhmittajaTest.ryhmittajaJarjestaaEnsimmaiseksiSuosituimman(plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienRyhmittajaTest) (2 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest.plassaajaPlassaaPoydanOikein(plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest) (27 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienRyhmittajaTest.ryhmittajaJarjestaaToiseksiSuosituimmanAvecinJosLoytyy(plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienRyhmittajaTest) (2 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest.ryhmittajaEihukkaaSitsaajia(plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest) (15 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest.JarjestajaPisteyttaaSitsaajatOikein(plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest) (4 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest.loytyykoKaveritoiveistaPalauttaaTrueJosOnToiveissa(plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest) (2 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest.onnistunutKaverinAsetus(plassaaja.sovelluslogiikka.managerinTyokalut.KaverienParittajaTest) (1 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest.OnkoPoydankokoOikea(plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest) (27 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest.valittaakoLiianPienestaMaarasta(plassaaja.sovelluslogiikka.managerinTyokalut.PlassaajaTest) (1 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest.jakaakoJakajaSitsaajatOnnistuneesti(plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest) (1 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest.pisteyttaakoPisteytaSitsaajaOikein(plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest) (1 ms)</li><li>plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest.loytyykoKaveritoiveistaPalauttaaFalseJosEiToiveissa(plassaaja.sovelluslogiikka.managerinTyokalut.SitsaajienPisteyttajaTest) (14 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 0.30
+
+</body>
+</html>

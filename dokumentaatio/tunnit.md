@@ -65,3 +65,11 @@ Tein luokan uudestaan. Ei toimi.
 Ti 14.10 8 tuntia
 
 Plassaaja plassaa sittenkin. Minä kun ehdin jo vaipua epätoivoon.
+
+To 16.10 5 tuntia.
+
+Pit ei testaa jostain syystä plassaaja luokkaa. Kaikki mahollinen on mielestäni kokeiltu.
+
+Pe 17.10 6 tuntia.
+
+Dokumentit ja kaikki valmiiksi viimeistä deadlinea varten.
